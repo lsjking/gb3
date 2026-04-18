@@ -1,25 +1,20 @@
-/* ===========================
-   기본 설정
-=========================== */
+/* 기본 설정 */
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  background-color: #dbeafe;
   font-family: Arial, sans-serif;
+  background: #dbeafe;
   color: #222;
 }
 
-/* ===========================
-   전체 레이아웃
-=========================== */
+/* 레이아웃 */
 .container {
   max-width: 1000px;
   margin: 0 auto;
   padding: 70px 40px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,7 +22,7 @@ body {
 }
 
 /* ===========================
-   3D 캐러셀
+   캐러셀
 =========================== */
 .scene {
   width: 420px;
@@ -39,29 +34,24 @@ body {
 }
 
 .carousel {
-  --spin-speed: 10s;
-
   width: 300px;
   height: 300px;
   position: relative;
   transform-style: preserve-3d;
-  animation: spin var(--spin-speed) linear infinite;
+  animation: spin 10s linear infinite;
 }
 
+/* ✅ hover: 회전 느려짐 */
 .carousel:hover {
-  --spin-speed: 30s;
-  animation-timing-function: ease-out;
+  animation-duration: 30s;
 }
 
-/* ===========================
-   프로필 카드
-=========================== */
+/* 카드 배치 */
 .profile {
   position: absolute;
   width: 260px;
   top: 50%;
   left: 50%;
-  transform-style: preserve-3d;
   transition: opacity 0.3s ease;
 }
 
@@ -78,25 +68,28 @@ body {
   transform: translate(-50%, -50%) rotateY(270deg) translateZ(380px);
 }
 
+/* ✅ hover: 다른 카드 흐리게 */
 .carousel:hover .profile {
   opacity: 0.25;
 }
+
 .carousel:hover .profile:hover {
   opacity: 1;
 }
 
+/* 카드 UI */
 .profile-inner {
   background: #fffaf7;
   padding: 26px;
   border-radius: 18px;
   text-align: center;
-
   box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
   transition:
     transform 0.35s ease,
     box-shadow 0.35s ease;
 }
 
+/* ✅ hover 확대 */
 .profile:hover .profile-inner {
   transform: scale(1.08);
   box-shadow: 0 24px 46px rgba(0, 0, 0, 0.32);
@@ -106,113 +99,112 @@ body {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  object-fit: cover;
 }
 
-/* info */
+/* ✅ info hover */
 .info {
   margin-top: 14px;
   font-size: 13px;
   line-height: 1.5;
-  text-align: left;
   max-height: 0;
   opacity: 0;
   overflow: hidden;
   transition: all 0.3s ease;
 }
+
 .profile:hover .info {
-  max-height: 220px;
+  max-height: 200px;
   opacity: 1;
 }
 
 /* ===========================
-   메인 카드
+   메인
 =========================== */
 .main {
   width: 100%;
-  max-width: auto; /* ✅ 캐러셀보다 확실히 크게 */
-  min-height: auto; /* ✅ 높이 존재감 */
-
-  background: linear-gradient(180deg, #fffaf7 0%, #fff3ea 100%);
-
-  padding: 20px 36px;
+  background: linear-gradient(180deg, #fffaf7, #fff3ea);
+  padding: 24px 36px;
   border-radius: 20px;
-
-  box-shadow:
-    0 16px 34px rgba(0, 0, 0, 0.14),
-    0 6px 14px rgba(0, 0, 0, 0.08);
-
-  animation: fadeUp 0.6s ease;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.main:hover {
-  transform: translateY(-4px);
-}
-
-/* 메인 콘텐츠 */
-.main section {
-  margin-bottom: 36px;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.14);
 }
 
 .main h3 {
   font-size: 24px;
-  font-weight: 800;
-  margin-bottom: 16px;
-}
-
-.main p {
-  font-size: 16px;
-  line-height: 1.75;
-  margin: 10px 0;
 }
 
 /* ===========================
-   애니메이션
+   명언 자동 전환 (CSS-only)
 =========================== */
+.quote-section {
+  position: relative;
+  margin-top: 30px;
+  height: 140px;
+}
+
+.quote {
+  position: absolute;
+  inset: 0;
+  padding: 18px 22px;
+  opacity: 0;
+
+  background: rgba(255, 255, 255, 0.65);
+  border-left: 4px solid #f59e0b;
+  border-radius: 14px;
+
+  font-style: italic;
+  line-height: 1.7;
+  animation: quoteFade 16s infinite;
+}
+
+.quote span {
+  display: block;
+  margin-top: 8px;
+  text-align: right;
+  font-size: 13px;
+  color: #888;
+}
+
+/* 타이밍 */
+.quote:nth-child(1) {
+  animation-delay: 0s;
+}
+.quote:nth-child(2) {
+  animation-delay: 4s;
+}
+.quote:nth-child(3) {
+  animation-delay: 8s;
+}
+.quote:nth-child(4) {
+  animation-delay: 12s;
+}
+
+/* 애니메이션 */
+@keyframes quoteFade {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  5% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  25% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 @keyframes spin {
   from {
     transform: rotateY(0deg);
   }
   to {
     transform: rotateY(360deg);
-  }
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ===========================
-   📱 모바일 대응
-=========================== */
-@media (max-width: 768px) {
-  body {
-    background: linear-gradient(180deg, #fffaf7 0%, #fff0e6 100%);
-  }
-
-  .container {
-    padding: 40px 20px;
-    gap: 48px;
-  }
-
-  .scene {
-    width: 340px;
-    height: 340px;
-  }
-
-  .main {
-    padding: 18px 24px;
-    border-radius: 18px;
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
   }
 }
