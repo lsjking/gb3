@@ -57,13 +57,12 @@ body {
   color: #222;
 }
 
-/* ✅ 글자는 항상 정방향 */
+/* 글자 고정 */
 .ball span {
   display: block;
-  transform: rotate(0deg);
 }
 
-/* 궤도 기본 (초기: MENU와 겹침 + 숨김) */
+/* 궤도 기본 (MENU와 겹쳐 있음) */
 .orbit {
   position: absolute;
   top: 50%;
@@ -71,83 +70,125 @@ body {
   width: 0;
   height: 0;
   opacity: 0;
+
   transform-origin: center center;
   pointer-events: none;
 }
 
-/* 초기에는 중심에 겹쳐 있음 */
+/* ball은 기본적으로 MENU와 겹침 */
 .orbit .ball {
   transform: translateX(0);
 }
 
-/* MENU 클릭 시 활성화 */
+/* MENU ON */
 #menu-toggle:checked ~ .stage .orbit {
   opacity: 1;
   pointer-events: auto;
 }
 
 /* =====================
-   PROJECT (오른쪽, 0deg)
+   PROJECT
 ===================== */
 #menu-toggle:checked ~ .stage .o1 {
   --rot: 360deg;
-  animation: spin 1.4s ease-out forwards;
+  animation: spin-out 1.4s ease-out forwards;
 }
 #menu-toggle:checked ~ .stage .o1 .ball {
-  transform: translateX(120px);
+  animation: radius-out 1.4s ease-out forwards;
 }
 #menu-toggle:checked ~ .stage .o1 span {
   transform: rotate(-360deg);
 }
 
 /* =====================
-   TEAM (아래, 90deg)
+   TEAM
 ===================== */
 #menu-toggle:checked ~ .stage .o2 {
-  --rot: 450deg; /* 360 + 90 */
-  animation: spin 1.6s ease-out forwards;
+  --rot: 450deg;
+  animation: spin-out 1.6s ease-out forwards;
 }
 #menu-toggle:checked ~ .stage .o2 .ball {
-  transform: translateX(120px);
+  animation: radius-out 1.6s ease-out forwards;
 }
 #menu-toggle:checked ~ .stage .o2 span {
   transform: rotate(-450deg);
 }
 
 /* =====================
-   ABOUT (왼쪽, 180deg)
+   ABOUT
 ===================== */
 #menu-toggle:checked ~ .stage .o3 {
-  --rot: 540deg; /* 360 + 180 */
-  animation: spin 1.8s ease-out forwards;
+  --rot: 540deg;
+  animation: spin-out 1.8s ease-out forwards;
 }
 #menu-toggle:checked ~ .stage .o3 .ball {
-  transform: translateX(120px);
+  animation: radius-out 1.8s ease-out forwards;
 }
 #menu-toggle:checked ~ .stage .o3 span {
   transform: rotate(-540deg);
 }
 
 /* =====================
-   CONTACT (위, 270deg)
+   CONTACT
 ===================== */
 #menu-toggle:checked ~ .stage .o4 {
-  --rot: 630deg; /* 360 + 270 */
-  animation: spin 2s ease-out forwards;
+  --rot: 630deg;
+  animation: spin-out 2s ease-out forwards;
 }
 #menu-toggle:checked ~ .stage .o4 .ball {
-  transform: translateX(120px);
+  animation: radius-out 2s ease-out forwards;
 }
 #menu-toggle:checked ~ .stage .o4 span {
   transform: rotate(-630deg);
 }
 
-/* 공통 회전 애니메이션 */
-@keyframes spin {
+/* =====================
+   MENU OFF (되돌아오기)
+===================== */
+#menu-toggle:not(:checked) ~ .stage .orbit {
+  animation: spin-in 0.9s ease-in forwards;
+}
+#menu-toggle:not(:checked) ~ .stage .orbit .ball {
+  animation: radius-in 0.9s ease-in forwards;
+}
+
+/* =====================
+   애니메이션
+===================== */
+@keyframes spin-out {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(var(--rot));
+  }
+}
+
+@keyframes spin-in {
+  from {
+    transform: rotate(var(--rot));
+    opacity: 1;
+  }
+  to {
+    transform: rotate(0deg);
+    opacity: 0;
+  }
+}
+
+@keyframes radius-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(120px);
+  }
+}
+
+@keyframes radius-in {
+  from {
+    transform: translateX(120px);
+  }
+  to {
+    transform: translateX(0);
   }
 }
