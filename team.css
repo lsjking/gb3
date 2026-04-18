@@ -1,3 +1,4 @@
+/* 기본 설정 */
 * {
   box-sizing: border-box;
 }
@@ -9,9 +10,7 @@ body {
   color: #222;
 }
 
-/* =====================
-   전체 레이아웃
-===================== */
+/* 레이아웃 */
 .container {
   max-width: 1000px;
   margin: 0 auto;
@@ -22,16 +21,16 @@ body {
   gap: 70px;
 }
 
-/* =====================
-   3D 캐러셀 (데스크톱)
-===================== */
+/* ===========================
+   캐러셀
+=========================== */
 .scene {
   width: 420px;
   height: 420px;
-  perspective: 1200px;
   display: flex;
   justify-content: center;
   align-items: center;
+  perspective: 1200px;
 }
 
 .carousel {
@@ -42,10 +41,12 @@ body {
   animation: spin 10s linear infinite;
 }
 
+/* ✅ hover: 회전 느려짐 */
 .carousel:hover {
   animation-duration: 30s;
 }
 
+/* 카드 배치 */
 .profile {
   position: absolute;
   width: 260px;
@@ -67,6 +68,7 @@ body {
   transform: translate(-50%, -50%) rotateY(270deg) translateZ(380px);
 }
 
+/* ✅ hover: 다른 카드 흐리게 */
 .carousel:hover .profile {
   opacity: 0.25;
 }
@@ -75,6 +77,7 @@ body {
   opacity: 1;
 }
 
+/* 카드 UI */
 .profile-inner {
   background: #fffaf7;
   padding: 26px;
@@ -86,8 +89,10 @@ body {
     box-shadow 0.35s ease;
 }
 
+/* ✅ hover 확대 */
 .profile:hover .profile-inner {
   transform: scale(1.08);
+  box-shadow: 0 24px 46px rgba(0, 0, 0, 0.32);
 }
 
 .profile-img {
@@ -96,6 +101,7 @@ body {
   border-radius: 50%;
 }
 
+/* ✅ info hover */
 .info {
   margin-top: 14px;
   font-size: 13px;
@@ -111,19 +117,24 @@ body {
   opacity: 1;
 }
 
-/* =====================
-   메인 영역
-===================== */
+/* ===========================
+   메인
+=========================== */
 .main {
   width: 100%;
   background: linear-gradient(180deg, #fffaf7, #fff3ea);
   padding: 24px 36px;
   border-radius: 20px;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.14);
 }
 
-/* =====================
-   명언
-===================== */
+.main h3 {
+  font-size: 24px;
+}
+
+/* ===========================
+   명언 자동 전환 (CSS-only)
+=========================== */
 .quote-section {
   position: relative;
   margin-top: 30px;
@@ -133,11 +144,16 @@ body {
 .quote {
   position: absolute;
   inset: 0;
-  padding: 18px;
+  padding: 18px 22px;
   opacity: 0;
-  animation: quoteFade 24s infinite;
+
   background: rgba(255, 255, 255, 0.65);
+  border-left: 4px solid #f59e0b;
   border-radius: 14px;
+
+  font-style: italic;
+  line-height: 1.7;
+  animation: quoteFade 24s infinite;
 }
 
 .quote span {
@@ -145,6 +161,7 @@ body {
   margin-top: 8px;
   text-align: right;
   font-size: 13px;
+  color: #888;
 }
 
 /* 타이밍 */
@@ -167,62 +184,33 @@ body {
   animation-delay: 20s;
 }
 
-/* =====================
-   애니메이션
-===================== */
+/* 애니메이션 */
+@keyframes quoteFade {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  5% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  25% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 @keyframes spin {
   from {
     transform: rotateY(0deg);
   }
   to {
     transform: rotateY(360deg);
-  }
-}
-
-@keyframes quoteFade {
-  0% {
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  30% {
-    opacity: 1;
-  }
-  40% {
-    opacity: 0;
-  }
-}
-
-/* =====================
-   📱 모바일 반응형
-===================== */
-@media (max-width: 768px) {
-  .scene {
-    width: 100%;
-    height: auto;
-    perspective: none;
-  }
-
-  .carousel {
-    width: 100%;
-    height: auto;
-    animation: none;
-    transform: none;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .profile {
-    position: static;
-    transform: none;
-    opacity: 1;
-    width: 100%;
-  }
-
-  .info {
-    max-height: none;
-    opacity: 1;
   }
 }
