@@ -153,7 +153,7 @@ body {
 
   font-style: italic;
   line-height: 1.7;
-  animation: quoteFade 16s infinite;
+  animation: quoteFade 24s infinite;
 }
 
 .quote span {
@@ -176,6 +176,12 @@ body {
 }
 .quote:nth-child(4) {
   animation-delay: 12s;
+}
+.quote:nth-child(5) {
+  animation-delay: 16s;
+}
+.quote:nth-child(6) {
+  animation-delay: 20s;
 }
 
 /* 애니메이션 */
