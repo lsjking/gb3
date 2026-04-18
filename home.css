@@ -7,121 +7,147 @@ body {
   height: 100vh;
   background: #dbeafe;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-family: Arial, sans-serif;
 }
 
-/* ===== MENU 버튼 ===== */
+/* MENU 중심 버튼 */
 #menu-toggle {
   display: none;
 }
 
 .menu-btn {
-  padding: 14px 28px;
-  background: #2563eb;
-  color: white;
-  font-weight: bold;
-  border-radius: 12px;
-  cursor: pointer;
-  margin-bottom: 40px;
-}
-
-/* ===== 메뉴 영역 ===== */
-.menu {
-  position: relative;
-  width: 400px;
-  height: 300px;
-}
-
-/* ===== 구슬 기본 ===== */
-.ball {
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  background: #fffaf7;
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+  background: #2563eb;
+  color: white;
+  font-weight: bold;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
+  cursor: pointer;
   position: absolute;
-  top: -200px;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 0;
+  z-index: 10;
+}
+
+/* 무대 */
+.stage {
+  position: relative;
+  width: 320px;
+  height: 320px;
+}
+
+/* 공통 구슬 */
+.ball {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #fffaf7;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   font-weight: bold;
   color: #222;
-  text-decoration: none;
+}
+
+/* ✅ 글자는 항상 정방향 */
+.ball span {
+  display: block;
+  transform: rotate(0deg);
+}
+
+/* 궤도 기본 (초기: MENU와 겹침 + 숨김) */
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  transform-origin: center center;
   pointer-events: none;
 }
 
-/* =====================
-   열릴 때 (떨어짐)
-===================== */
-#menu-toggle:checked ~ .menu .ball {
-  animation: drop 1.4s cubic-bezier(0.25, 0.75, 0.3, 1.2) forwards;
+/* 초기에는 중심에 겹쳐 있음 */
+.orbit .ball {
+  transform: translateX(0);
 }
 
-#menu-toggle:checked ~ .menu .ball:nth-child(1) {
-  animation-delay: 0s;
-  left: 20%;
-}
-#menu-toggle:checked ~ .menu .ball:nth-child(2) {
-  animation-delay: 0.4s;
-  left: 50%;
-}
-#menu-toggle:checked ~ .menu .ball:nth-child(3) {
-  animation-delay: 0.8s;
-  left: 80%;
+/* MENU 클릭 시 활성화 */
+#menu-toggle:checked ~ .stage .orbit {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* =====================
-   닫힐 때 (위로 빨려감)
+   PROJECT (오른쪽, 0deg)
 ===================== */
-#menu-toggle:not(:checked) ~ .menu .ball {
-  animation: suck 0.9s ease-in forwards;
+#menu-toggle:checked ~ .stage .o1 {
+  --rot: 360deg;
+  animation: spin 1.4s ease-out forwards;
+}
+#menu-toggle:checked ~ .stage .o1 .ball {
+  transform: translateX(120px);
+}
+#menu-toggle:checked ~ .stage .o1 span {
+  transform: rotate(-360deg);
 }
 
 /* =====================
-   애니메이션 정의
+   TEAM (아래, 90deg)
 ===================== */
-
-/* 떨어짐 + 튕김 */
-@keyframes drop {
-  0% {
-    transform: translate(-50%, -300px) rotate(0deg);
-    opacity: 0;
-  }
-  60% {
-    transform: translate(-50%, 0) rotate(200deg);
-    opacity: 1;
-  }
-  75% {
-    transform: translate(-50%, -18px);
-  }
-  100% {
-    transform: translate(-50%, 0) rotate(360deg);
-    opacity: 1;
-    pointer-events: auto;
-  }
+#menu-toggle:checked ~ .stage .o2 {
+  --rot: 450deg; /* 360 + 90 */
+  animation: spin 1.6s ease-out forwards;
+}
+#menu-toggle:checked ~ .stage .o2 .ball {
+  transform: translateX(120px);
+}
+#menu-toggle:checked ~ .stage .o2 span {
+  transform: rotate(-450deg);
 }
 
-/* 위로 빨려 올라감 */
-@keyframes suck {
-  0% {
-    transform: translate(-50%, 0) scale(1);
-    opacity: 1;
+/* =====================
+   ABOUT (왼쪽, 180deg)
+===================== */
+#menu-toggle:checked ~ .stage .o3 {
+  --rot: 540deg; /* 360 + 180 */
+  animation: spin 1.8s ease-out forwards;
+}
+#menu-toggle:checked ~ .stage .o3 .ball {
+  transform: translateX(120px);
+}
+#menu-toggle:checked ~ .stage .o3 span {
+  transform: rotate(-540deg);
+}
+
+/* =====================
+   CONTACT (위, 270deg)
+===================== */
+#menu-toggle:checked ~ .stage .o4 {
+  --rot: 630deg; /* 360 + 270 */
+  animation: spin 2s ease-out forwards;
+}
+#menu-toggle:checked ~ .stage .o4 .ball {
+  transform: translateX(120px);
+}
+#menu-toggle:checked ~ .stage .o4 span {
+  transform: rotate(-630deg);
+}
+
+/* 공통 회전 애니메이션 */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
   }
-  60% {
-    transform: translate(-50%, -40px) scale(0.8);
-  }
-  100% {
-    transform: translate(-50%, -300px) scale(0.3);
-    opacity: 0;
-    pointer-events: none;
+  to {
+    transform: rotate(var(--rot));
   }
 }
