@@ -1,52 +1,92 @@
+/* ✅ body를 화면 기준으로 만든다 */
 body {
   margin: 0;
   background-color: #dbeafe;
   font-family: Arial, sans-serif;
+
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* 좌 / 우 전체 레이아웃 */
+/* ✅ container는 wrapper만 남김 */
 .container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  display: flex;
-  gap: 30px;
-}
-
-/* 왼쪽 팀원 목록 */
-.team-list {
-  align-items: flex-start;
   width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ✅ 시점 */
+.scene {
+  width: 100%;
+  height: 400px;
+
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 20px;
+  justify-content: center;
+  align-items: center;
+
+  perspective: 1200px;
 }
 
-/* 팀원 카드 */
+/* ✅ 원 전체 (회전 주체) */
+.carousel {
+  width: 300px;
+  height: 300px;
+  position: relative;
+
+  transform-style: preserve-3d;
+  animation: spin 10s linear infinite;
+}
+
+.scene:hover .carousel {
+  animation-play-state: paused;
+}
+
+/* ✅ 각 카드 */
 .profile {
-  max-width: 260px;
-  margin: 0 auto;
-  padding: 16px;
+  position: absolute;
+  width: 260px;
+
+  top: 50%;
+  left: 50%;
+  transform-style: preserve-3d;
+}
+
+/* ✅ 중앙 기준 원형 배치 */
+.profile:nth-child(1) {
+  transform: translate(-50%, -50%) rotateY(0deg) translateZ(380px);
+}
+.profile:nth-child(2) {
+  transform: translate(-50%, -50%) rotateY(90deg) translateZ(380px);
+}
+.profile:nth-child(3) {
+  transform: translate(-50%, -50%) rotateY(180deg) translateZ(380px);
+}
+.profile:nth-child(4) {
+  transform: translate(-50%, -50%) rotateY(270deg) translateZ(380px);
+}
+
+/* 카드 */
+.profile-inner {
   background-color: #fffaf7;
-  border-radius: 16px;
   padding: 24px;
+  border-radius: 16px;
   text-align: center;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
 
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
-.profile:hover {
-  background-color: #dce1e6;
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.2);
+.profile:hover .profile-inner {
+  transform: scale(1.05);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
 }
 
-/* 프로필 이미지 */
+/* image */
 .profile-img {
   width: 120px;
   height: 120px;
@@ -54,16 +94,7 @@ body {
   object-fit: cover;
 }
 
-/* 섹션 스타일 */
-section {
-  margin-bottom: 30px;
-}
-
-section h3 {
-  margin-bottom: 12px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid #ddd;
-}
+/* info */
 .info {
   margin-top: 12px;
   font-size: 13px;
@@ -79,4 +110,14 @@ section h3 {
 .profile:hover .info {
   max-height: 200px;
   opacity: 1;
+}
+
+/* 회전 */
+@keyframes spin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
 }
