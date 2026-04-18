@@ -13,36 +13,31 @@ body {
 }
 
 /* ===========================
-   전체 레이아웃 (위 → 아래)
+   전체 레이아웃
 =========================== */
 .container {
-  max-width: 1000px; /* ✅ 전체 폭 확장 */
+  max-width: 1000px;
   margin: 0 auto;
   padding: 70px 40px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 70px; /* ✅ 캐러셀-메인 간격 확대 */
+  gap: 70px;
 }
 
 /* ===========================
-   위: 3D 캐러셀 영역
+   3D 캐러셀
 =========================== */
 .scene {
   width: 420px;
   height: 420px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   perspective: 1200px;
 }
 
-/* ===========================
-   캐러셀 회전
-=========================== */
 .carousel {
   --spin-speed: 10s;
 
@@ -50,7 +45,6 @@ body {
   height: 300px;
   position: relative;
   transform-style: preserve-3d;
-
   animation: spin var(--spin-speed) linear infinite;
 }
 
@@ -60,7 +54,7 @@ body {
 }
 
 /* ===========================
-   카드 배치
+   프로필 카드
 =========================== */
 .profile {
   position: absolute;
@@ -91,7 +85,6 @@ body {
   opacity: 1;
 }
 
-/* 카드 UI */
 .profile-inner {
   background: #fffaf7;
   padding: 26px;
@@ -133,45 +126,47 @@ body {
 }
 
 /* ===========================
-   아래: 메인 카드 (✅ 크게 보이게 핵심 수정)
+   메인 카드
 =========================== */
 .main {
   width: 100%;
-  max-width: 880px; /* ✅ 캐러셀보다 확실히 크게 */
-  min-height: 280px; /* ✅ 높이 존재감 */
+  max-width: auto; /* ✅ 캐러셀보다 확실히 크게 */
+  min-height: auto; /* ✅ 높이 존재감 */
 
-  background: linear-gradient(180deg, #fffdf9 0%, #fff6ee 100%);
+  background: linear-gradient(180deg, #fffaf7 0%, #fff3ea 100%);
 
-  padding: 48px 56px; /* ✅ 여백 대폭 증가 */
-  border-radius: 26px;
+  padding: 20px 36px;
+  border-radius: 20px;
 
   box-shadow:
-    0 28px 56px rgba(0, 0, 0, 0.16),
-    0 12px 24px rgba(0, 0, 0, 0.09);
+    0 16px 34px rgba(0, 0, 0, 0.14),
+    0 6px 14px rgba(0, 0, 0, 0.08);
 
   animation: fadeUp 0.6s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-/* 메인 섹션 */
+.main:hover {
+  transform: translateY(-4px);
+}
+
+/* 메인 콘텐츠 */
 .main section {
-  margin-bottom: 44px;
-}
-
-.main section:last-child {
-  margin-bottom: 0;
+  margin-bottom: 36px;
 }
 
 .main h3 {
-  font-size: 24px; /* ✅ 제목 키움 */
+  font-size: 24px;
   font-weight: 800;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 .main p {
-  font-size: 16px; /* ✅ 본문 키움 */
+  font-size: 16px;
   line-height: 1.75;
   margin: 10px 0;
-  color: #333;
 }
 
 /* ===========================
@@ -194,5 +189,30 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* ===========================
+   📱 모바일 대응
+=========================== */
+@media (max-width: 768px) {
+  body {
+    background: linear-gradient(180deg, #fffaf7 0%, #fff0e6 100%);
+  }
+
+  .container {
+    padding: 40px 20px;
+    gap: 48px;
+  }
+
+  .scene {
+    width: 340px;
+    height: 340px;
+  }
+
+  .main {
+    padding: 18px 24px;
+    border-radius: 18px;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
   }
 }
