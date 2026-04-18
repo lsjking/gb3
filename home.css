@@ -331,3 +331,10 @@ body {
     transform: scale(1.03);
   }
 }
+#menu-toggle:checked + .menu-btn {
+  pointer-events: none;
+}
+#menu-toggle:checked ~ .stage .orbit {
+  pointer-events: auto;
+  z-index: 20;
+}
