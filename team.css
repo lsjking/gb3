@@ -25,23 +25,20 @@ body {
   perspective: 1200px;
 }
 
-/* ✅ 캐러셀 회전 (정상 논리) */
+/* ✅ 캐러셀: 기본은 일정 회전 */
 .carousel {
-  --spin-speed: 10s; /* 기본 속도 */
+  --spin-speed: 10s;
 
   width: 300px;
   height: 300px;
   position: relative;
   transform-style: preserve-3d;
 
-  animation-name: spin;
-  animation-duration: var(--spin-speed);
-  animation-iteration-count: infinite;
-  animation-timing-function: linear; /* ✅ 기본 항상 linear */
+  animation: spin var(--spin-speed) linear infinite;
 }
 
-/* ✅ hover 중일 때만 감속 느낌 */
-.scene:hover .carousel {
+/* ✅ hover 시에만 감속 */
+.carousel:hover {
   --spin-speed: 30s;
   animation-timing-function: ease-out;
 }
@@ -120,7 +117,7 @@ body {
   opacity: 1;
 }
 
-/* 회전 키프레임 */
+/* 회전 */
 @keyframes spin {
   from {
     transform: rotateY(0deg);
