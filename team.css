@@ -1,4 +1,4 @@
-/* ✅ body를 화면 기준으로 만든다 */
+/* body 기준 */
 body {
   margin: 0;
   background-color: #dbeafe;
@@ -10,51 +10,42 @@ body {
   align-items: center;
 }
 
-/* ✅ container는 wrapper만 남김 */
 .container {
   width: 100%;
-  max-width: none;
   margin: 0;
   padding: 0;
 }
 
-/* ✅ 시점 */
+/* 시점 */
 .scene {
   width: 100%;
   height: 400px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   perspective: 1200px;
 }
 
-/* ✅ 원 전체 (회전 주체) */
+/* 캐러셀 회전 유지 */
 .carousel {
   width: 300px;
   height: 300px;
   position: relative;
-
   transform-style: preserve-3d;
   animation: spin 10s linear infinite;
 }
 
-.scene:hover .carousel {
-  animation-play-state: paused;
-}
-
-/* ✅ 각 카드 */
+/* 카드 (✅ 절대 이동 안 함) */
 .profile {
   position: absolute;
   width: 260px;
-
   top: 50%;
   left: 50%;
   transform-style: preserve-3d;
+  transition: opacity 0.3s ease;
 }
 
-/* ✅ 중앙 기준 원형 배치 */
+/* 원형 배치 */
 .profile:nth-child(1) {
   transform: translate(-50%, -50%) rotateY(0deg) translateZ(380px);
 }
@@ -68,7 +59,16 @@ body {
   transform: translate(-50%, -50%) rotateY(270deg) translateZ(380px);
 }
 
-/* 카드 */
+/* ✅ hover 시 다른 카드 흐림 */
+.carousel:hover .profile {
+  opacity: 0.25;
+}
+
+.carousel:hover .profile:hover {
+  opacity: 1;
+}
+
+/* 카드 UI */
 .profile-inner {
   background-color: #fffaf7;
   padding: 24px;
@@ -77,16 +77,17 @@ body {
 
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
+/* ✅ 카드 안쪽만 강조 */
 .profile:hover .profile-inner {
-  transform: scale(1.05);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
+  transform: scale(1.08);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* image */
+/* 이미지 */
 .profile-img {
   width: 120px;
   height: 120px;
@@ -103,7 +104,6 @@ body {
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-
   transition: all 0.3s ease;
 }
 
