@@ -3,7 +3,6 @@ body {
   margin: 0;
   background-color: #dbeafe;
   font-family: Arial, sans-serif;
-
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -26,16 +25,28 @@ body {
   perspective: 1200px;
 }
 
-/* 캐러셀 회전 유지 */
+/* ✅ 캐러셀 회전 (정상 논리) */
 .carousel {
+  --spin-speed: 10s; /* 기본 속도 */
+
   width: 300px;
   height: 300px;
   position: relative;
   transform-style: preserve-3d;
-  animation: spin 10s linear infinite;
+
+  animation-name: spin;
+  animation-duration: var(--spin-speed);
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; /* ✅ 기본 항상 linear */
 }
 
-/* 카드 (✅ 절대 이동 안 함) */
+/* ✅ hover 중일 때만 감속 느낌 */
+.scene:hover .carousel {
+  --spin-speed: 30s;
+  animation-timing-function: ease-out;
+}
+
+/* 카드 */
 .profile {
   position: absolute;
   width: 260px;
@@ -59,11 +70,10 @@ body {
   transform: translate(-50%, -50%) rotateY(270deg) translateZ(380px);
 }
 
-/* ✅ hover 시 다른 카드 흐림 */
+/* hover 시 다른 카드 흐림 */
 .carousel:hover .profile {
   opacity: 0.25;
 }
-
 .carousel:hover .profile:hover {
   opacity: 1;
 }
@@ -74,14 +84,13 @@ body {
   padding: 24px;
   border-radius: 16px;
   text-align: center;
-
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   transition:
     transform 0.35s ease,
     box-shadow 0.35s ease;
 }
 
-/* ✅ 카드 안쪽만 강조 */
+/* 카드 강조 */
 .profile:hover .profile-inner {
   transform: scale(1.08);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
@@ -100,7 +109,6 @@ body {
   margin-top: 12px;
   font-size: 13px;
   text-align: left;
-
   max-height: 0;
   opacity: 0;
   overflow: hidden;
@@ -112,7 +120,7 @@ body {
   opacity: 1;
 }
 
-/* 회전 */
+/* 회전 키프레임 */
 @keyframes spin {
   from {
     transform: rotateY(0deg);
