@@ -1,3 +1,6 @@
+/* =====================
+   RESET / BASE
+===================== */
 * {
   box-sizing: border-box;
 }
@@ -5,12 +8,7 @@
 body {
   margin: 0;
   height: 100vh;
-  background: radial-gradient(
-    circle at center,
-    #eff6ff 0%,
-    #dbeafe 40%,
-    #bfdbfe 100%
-  );
+  background: radial-gradient(circle at center, #eff6ff, #dbeafe 40%, #bfdbfe);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,34 +39,15 @@ body {
   position: absolute;
   z-index: 10;
 
-  /* 심장박동 */
   animation: heartbeat 2.8s infinite;
-
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
-
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    background-color 0.25s ease;
 }
 
-.menu-btn:hover {
-  background: #1d4ed8;
-}
-
-.menu-btn:active {
-  transform: scale(0.95);
-}
-
-/* 토글 ON → 각성 + 텍스트 점등 */
 #menu-toggle:checked + .menu-btn {
-  animation:
-    awaken 0.6s ease-out forwards,
-    text-awaken 1.2s steps(6, end) forwards;
+  animation: awaken 0.6s ease-out forwards;
 }
 
 /* =====================
-   무대
+   STAGE
 ===================== */
 .stage {
   position: relative;
@@ -76,76 +55,8 @@ body {
   height: 400px;
 }
 
-/* ===== 이중 심장 파동 ===== */
-.stage::before,
-.stage::after {
-  content: '';
-  position: absolute;
-  inset: -20px;
-  border-radius: 50%;
-  border: 2px solid rgba(37, 99, 235, 0.6);
-  opacity: 0;
-  transform: scale(0.5);
-}
-
-/* 1차 파동 */
-#menu-toggle:checked ~ .stage::before {
-  animation: wave 1.2s ease-out forwards;
-}
-
-/* 2차 파동 (둠-둠) */
-#menu-toggle:checked ~ .stage::after {
-  animation: wave 1.2s ease-out 0.35s forwards;
-}
-
-/* ===== 중앙 빛 줄기 ===== */
-.core-light {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  pointer-events: none;
-  opacity: 0;
-  filter: blur(8px);
-
-  background: conic-gradient(
-    from 0deg,
-    transparent 0deg,
-    rgba(37, 99, 235, 0.6) 12deg,
-    transparent 24deg,
-    transparent 60deg,
-    rgba(37, 99, 235, 0.4) 72deg,
-    transparent 84deg
-  );
-}
-
-#menu-toggle:checked ~ .stage .core-light {
-  animation: rays 1.4s ease-out forwards;
-}
-
 /* =====================
-   공통 구슬
-===================== */
-.ball {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: #fffaf7;
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  font-weight: bold;
-  color: #222;
-}
-
-.ball span {
-  display: block;
-}
-
-/* =====================
-   궤도 (기본 숨김)
+   ORBIT (자동 각도 핵심)
 ===================== */
 .orbit {
   position: absolute;
@@ -154,160 +65,93 @@ body {
   width: 0;
   height: 0;
   opacity: 0;
-  transform-origin: center;
   pointer-events: none;
-}
+  transform-origin: center;
 
-.orbit .ball {
-  transform: translateX(0) scale(0.7);
+  /* ✅ 각도 자동 계산 */
+  --angle: calc(360deg / var(--count) * var(--i));
 }
 
 #menu-toggle:checked ~ .stage .orbit {
   opacity: 1;
   pointer-events: auto;
-}
-
-/* -------- PROJECT -------- */
-#menu-toggle:checked ~ .stage .o1 {
-  --rot: 360deg;
-  animation: spin-out 1.4s ease-out forwards;
-}
-#menu-toggle:checked ~ .stage .o1 .ball {
-  animation: radius-out 1.4s ease-out forwards;
-}
-#menu-toggle:checked ~ .stage .o1 span {
-  transform: rotate(-360deg);
-}
-
-/* -------- TEAM -------- */
-#menu-toggle:checked ~ .stage .o2 {
-  --rot: 450deg;
-  animation: spin-out 1.6s ease-out forwards;
-}
-#menu-toggle:checked ~ .stage .o2 .ball {
-  animation: radius-out 1.6s ease-out forwards;
-}
-#menu-toggle:checked ~ .stage .o2 span {
-  transform: rotate(-450deg);
-}
-
-/* -------- ABOUT -------- */
-#menu-toggle:checked ~ .stage .o3 {
-  --rot: 540deg;
-  animation: spin-out 1.8s ease-out forwards;
-}
-#menu-toggle:checked ~ .stage .o3 .ball {
-  animation: radius-out 1.8s ease-out forwards;
-}
-#menu-toggle:checked ~ .stage .o3 span {
-  transform: rotate(-540deg);
-}
-
-/* -------- CONTACT -------- */
-#menu-toggle:checked ~ .stage .o4 {
-  --rot: 630deg;
-  animation: spin-out 2s ease-out forwards;
-}
-#menu-toggle:checked ~ .stage .o4 .ball {
-  animation: radius-out 2s ease-out forwards;
-}
-#menu-toggle:checked ~ .stage .o4 span {
-  transform: rotate(-630deg);
-}
-
-/* 각성 후 호흡 */
-#menu-toggle:checked ~ .stage .ball {
-  animation: breathe 4s ease-in-out infinite;
+  animation: spin-out 1.5s ease-out forwards;
 }
 
 /* =====================
-   애니메이션
+   BALL
+===================== */
+.ball {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #fffaf7;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: bold;
+  color: #222;
+  text-decoration: none;
+
+  transform: translateX(0) scale(0.7);
+}
+
+/* ✅ 글씨 고정: 부모 회전 각도만큼 반대로 */
+.ball span {
+  white-space: nowrap;
+  transform: rotate(calc(-1 * var(--angle)));
+}
+
+/* =====================
+   OPEN / CLOSE
+===================== */
+#menu-toggle:checked ~ .stage .orbit .ball {
+  animation: radius-out 1.4s ease-out forwards;
+}
+
+#menu-toggle:not(:checked) ~ .stage .orbit .ball {
+  animation: radius-in 0.8s ease-in forwards;
+}
+
+/* =====================
+   ANIMATIONS
 ===================== */
 @keyframes heartbeat {
-  0% {
+  0%,
+  100% {
     transform: scale(1);
   }
   15% {
     transform: scale(1.12);
   }
-  30% {
-    transform: scale(1);
-  }
   45% {
     transform: scale(1.08);
-  }
-  60% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1);
   }
 }
 
 @keyframes awaken {
-  0% {
-    transform: scale(1);
-  }
-  40% {
-    transform: scale(1.25);
-    box-shadow: 0 0 80px rgba(37, 99, 235, 1);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 120px rgba(37, 99, 235, 0.9);
-  }
-}
-
-@keyframes text-awaken {
   from {
-    color: rgba(255, 255, 255, 0.3);
-    text-shadow: none;
+    transform: scale(1);
   }
   to {
-    color: #ffffff;
-    text-shadow:
-      0 0 6px rgba(255, 255, 255, 0.8),
-      0 0 20px rgba(37, 99, 235, 1);
+    transform: scale(1.25);
   }
 }
 
-@keyframes wave {
-  0% {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-  30% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: scale(1.7);
-  }
-}
-
-@keyframes rays {
-  0% {
-    opacity: 0;
-    transform: rotate(0deg) scale(0.8);
-  }
-  40% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: rotate(180deg) scale(1.6);
-  }
-}
-
+/* 궤도 회전 */
 @keyframes spin-out {
   from {
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(var(--rot));
+    transform: rotate(var(--angle));
   }
 }
 
+/* 퍼짐 */
 @keyframes radius-out {
   0% {
     transform: translateX(0) scale(0.7);
@@ -322,17 +166,14 @@ body {
   }
 }
 
-@keyframes breathe {
-  0%,
-  100% {
-    transform: scale(1);
+/* 수축 */
+@keyframes radius-in {
+  from {
+    transform: translateX(180px) scale(1);
+    opacity: 1;
   }
-  50% {
-    transform: scale(1.03);
+  to {
+    transform: translateX(0) scale(0.7);
+    opacity: 0;
   }
-}
-
-#menu-toggle:checked ~ .stage .orbit {
-  pointer-events: auto;
-  z-index: 20;
 }

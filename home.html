@@ -3,42 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
+    <title>Orbit Menu</title>
     <link rel="stylesheet" href="home.css" />
   </head>
 
   <body>
-    <!-- 토글 -->
+    <!-- MENU 토글 -->
     <input type="checkbox" id="menu-toggle" />
-
-    <!-- 중앙 MENU -->
     <label for="menu-toggle" class="menu-btn">MENU</label>
 
-    <!-- 무대 -->
-
-    <div class="stage">
-      <div class="orbit o1">
-        <a class="ball" href="project.html">
-          <span>PROJECT</span>
-        </a>
+    <!-- STAGE : 메뉴 개수는 여기서만 관리 -->
+    <div class="stage" style="--count: 8">
+      <div class="orbit" style="--i: 0">
+        <a class="ball" href="project.html"><span>PROJECT</span></a>
       </div>
-
-      <div class="orbit o2">
-        <a class="ball" href="team.html">
-          <span>TEAM</span>
-        </a>
+      <div class="orbit" style="--i: 1">
+        <a class="ball" href="team.html"><span>TEAM</span></a>
       </div>
-
-      <div class="orbit o3">
-        <a class="ball" href="about.html">
-          <span>ABOUT</span>
-        </a>
+      <div class="orbit" style="--i: 2">
+        <a class="ball" href="about.html"><span>ABOUT</span></a>
       </div>
-
-      <div class="orbit o4">
-        <a class="ball" href="contact.html">
-          <span>CONTACT</span>
-        </a>
+      <div class="orbit" style="--i: 3">
+        <a class="ball" href="contact.html"><span>CONTACT</span></a>
+      </div>
+      <div class="orbit" style="--i: 4">
+        <a class="ball" href="blog.html"><span>BLOG</span></a>
+      </div>
+      <div class="orbit" style="--i: 5">
+        <a class="ball" href="blog.html"><span>BLOG</span></a>
+      </div>
+      <div class="orbit" style="--i: 6">
+        <a class="ball" href="blog.html"><span>BLOG</span></a>
+      </div>
+      <div class="orbit" style="--i: 7">
+        <a class="ball" href="blog.html"><span>BLOG</span></a>
       </div>
     </div>
   </body>
