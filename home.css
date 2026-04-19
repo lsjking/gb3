@@ -179,7 +179,7 @@ input[type='radio'] {
 }
 
 /* =====================
-   BALL
+   BALL ✅ 핵심 변경
 ===================== */
 .ball {
   width: 96px;
@@ -195,8 +195,10 @@ input[type='radio'] {
   font-weight: bold;
   color: #222;
 
-  transform: translateX(60px) scale(0.7);
+  /* ✅ 닫힌 상태 = 코어 내부 완전 수납 */
+  transform: translateX(0) scale(0.4);
   opacity: 0;
+  pointer-events: none;
 }
 
 .ball span {
@@ -208,6 +210,7 @@ input[type='radio'] {
 #menu-toggle:checked ~ .stage .orbit .ball {
   animation: radius-out 1.2s ease-out forwards;
   animation-delay: calc(var(--i) * 0.12s);
+  pointer-events: auto;
 }
 
 /* CLOSE BALL */
@@ -239,7 +242,7 @@ input[type='radio'] {
 
 @keyframes radius-out {
   from {
-    transform: translateX(60px) scale(0.7);
+    transform: translateX(0) scale(0.4);
     opacity: 0;
   }
   to {
@@ -254,7 +257,7 @@ input[type='radio'] {
     opacity: 1;
   }
   to {
-    transform: translateX(60px) scale(0.7);
+    transform: translateX(0) scale(0.4);
     opacity: 0;
   }
 }
