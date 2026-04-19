@@ -8,7 +8,7 @@
   </head>
 
   <body>
-    <!-- ===== STATE MODES (JS 없음) ===== -->
+    <!-- ===== STATE MODES ===== -->
     <input type="radio" name="mode" id="mode-standby" checked />
     <input type="radio" name="mode" id="mode-analysis" />
     <input type="radio" name="mode" id="mode-alert" />
@@ -29,13 +29,19 @@
 
     <!-- ===== ABSOUL + ORBIT ===== -->
     <div class="orbit-wrapper">
-      <!-- MENU 토글 -->
       <input type="checkbox" id="menu-toggle" />
 
-      <!-- ABSOUL CORE -->
       <label for="menu-toggle" class="menu-btn">
-        <span>ABS🔵UL</span>
+        <span>LINK START</span>
       </label>
+
+      <!-- AI STATUS TEXT -->
+      <div class="ai-text">
+        <span class="standby">Awaiting user signal…</span>
+        <span class="analysis">Analyzing parameters…</span>
+        <span class="alert">⚠ Threat detected</span>
+        <span class="sleep">Minimal cognition active</span>
+      </div>
 
       <!-- STAGE -->
       <div class="stage" style="--count: 10">
@@ -67,7 +73,7 @@
           <a class="ball"><span>CAREER</span></a>
         </div>
         <div class="orbit" style="--i: 9">
-          <a class="ball" href="team.html"><span>HELP</span></a>
+          <a class="ball"><span>HELP</span></a>
         </div>
       </div>
     </div>
