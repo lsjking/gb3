@@ -29,7 +29,6 @@ body {
   background: #2563eb;
   color: white;
   font-weight: bold;
-  letter-spacing: 1px;
 
   display: flex;
   justify-content: center;
@@ -43,7 +42,7 @@ body {
 }
 
 #menu-toggle:checked + .menu-btn {
-  animation: awaken 0.6s ease-out forwards;
+  animation: awaken 0.5s ease-out forwards;
 }
 
 /* =====================
@@ -56,7 +55,7 @@ body {
 }
 
 /* =====================
-   ORBIT (자동 각도 핵심)
+   ORBIT
 ===================== */
 .orbit {
   position: absolute;
@@ -64,26 +63,25 @@ body {
   left: 50%;
   width: 0;
   height: 0;
-  opacity: 0;
-  pointer-events: none;
-  transform-origin: center;
 
-  /* ✅ 각도 자동 계산 */
+  transform-origin: center;
   --angle: calc(360deg / var(--count) * var(--i));
+
+  /* 시작 위치 = MENU 바로 뒤 */
+  transform: rotate(0deg);
 }
 
+/* 펼칠 때: 회전 배치 */
 #menu-toggle:checked ~ .stage .orbit {
-  opacity: 1;
-  pointer-events: auto;
-  animation: spin-out 1.5s ease-out forwards;
+  animation: spin-out 1.2s ease-out forwards;
 }
 
 /* =====================
    BALL
 ===================== */
 .ball {
-  width: 100px;
-  height: 100px;
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
   background: #fffaf7;
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
@@ -96,10 +94,11 @@ body {
   color: #222;
   text-decoration: none;
 
-  transform: translateX(0) scale(0.7);
+  transform: translateX(60px) scale(0.7);
+  opacity: 0;
 }
 
-/* ✅ 글씨 고정: 부모 회전 각도만큼 반대로 */
+/* 글씨 고정 */
 .ball span {
   white-space: nowrap;
   transform: rotate(calc(-1 * var(--angle)));
@@ -108,17 +107,21 @@ body {
 /* =====================
    OPEN / CLOSE
 ===================== */
+
+/* ✅ 펼칠 때 */
 #menu-toggle:checked ~ .stage .orbit .ball {
-  animation: radius-out 1.4s ease-out forwards;
+  animation: radius-out 1.2s ease-out forwards;
 }
 
+/* ✅ 닫을 때 (돌면서 빨려들기) */
 #menu-toggle:not(:checked) ~ .stage .orbit .ball {
-  animation: radius-in 0.8s ease-in forwards;
+  animation: radius-in 0.9s cubic-bezier(0.6, 0, 0.9, 0.4) forwards;
 }
 
 /* =====================
    ANIMATIONS
 ===================== */
+
 @keyframes heartbeat {
   0%,
   100% {
@@ -141,7 +144,7 @@ body {
   }
 }
 
-/* 궤도 회전 */
+/* 궤도 배치 회전 */
 @keyframes spin-out {
   from {
     transform: rotate(0deg);
@@ -151,29 +154,26 @@ body {
   }
 }
 
-/* 퍼짐 */
+/* ✅ 펼쳐지기 */
 @keyframes radius-out {
-  0% {
-    transform: translateX(0) scale(0.7);
+  from {
+    transform: rotate(0deg) translateX(60px) scale(0.7);
     opacity: 0;
   }
-  60% {
-    transform: translateX(200px) scale(1.05);
+  to {
+    transform: rotate(0deg) translateX(180px) scale(1);
     opacity: 1;
-  }
-  100% {
-    transform: translateX(180px) scale(1);
   }
 }
 
-/* 수축 */
+/* ✅ 돌아서 빨려들기 (핵심) */
 @keyframes radius-in {
   from {
-    transform: translateX(180px) scale(1);
+    transform: rotate(0deg) translateX(180px) scale(1);
     opacity: 1;
   }
   to {
-    transform: translateX(0) scale(0.7);
+    transform: rotate(-360deg) translateX(60px) scale(0.7);
     opacity: 0;
   }
 }
