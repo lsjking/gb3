@@ -37,12 +37,6 @@ body {
   cursor: pointer;
   position: absolute;
   z-index: 10;
-
-  animation: heartbeat 2.8s infinite;
-}
-
-#menu-toggle:checked + .menu-btn {
-  animation: awaken 0.5s ease-out forwards;
 }
 
 /* =====================
@@ -67,13 +61,19 @@ body {
   transform-origin: center;
   --angle: calc(360deg / var(--count) * var(--i));
 
-  /* 시작 위치 = MENU 바로 뒤 */
   transform: rotate(0deg);
 }
 
-/* 펼칠 때: 회전 배치 */
+/* ✅ 펼칠 때: 순차 회전 */
 #menu-toggle:checked ~ .stage .orbit {
-  animation: spin-out 1.2s ease-out forwards;
+  animation: orbit-out 1.2s ease-out forwards;
+  animation-delay: calc(var(--i) * 0.12s);
+}
+
+/* ✅ 닫힐 때: 같은 궤도로 복귀 */
+#menu-toggle:not(:checked) ~ .stage .orbit {
+  animation: orbit-in 1s ease-in forwards;
+  animation-delay: calc((var(--count) - var(--i) - 1) * 0.12s);
 }
 
 /* =====================
@@ -92,13 +92,11 @@ body {
 
   font-weight: bold;
   color: #222;
-  text-decoration: none;
 
   transform: translateX(60px) scale(0.7);
   opacity: 0;
 }
 
-/* 글씨 고정 */
 .ball span {
   white-space: nowrap;
   transform: rotate(calc(-1 * var(--angle)));
@@ -111,41 +109,21 @@ body {
 /* ✅ 펼칠 때 */
 #menu-toggle:checked ~ .stage .orbit .ball {
   animation: radius-out 1.2s ease-out forwards;
+  animation-delay: calc(var(--i) * 0.12s);
 }
 
-/* ✅ 닫을 때 (돌면서 빨려들기) */
+/* ✅ 닫힐 때 */
 #menu-toggle:not(:checked) ~ .stage .orbit .ball {
-  animation: radius-in 0.9s cubic-bezier(0.6, 0, 0.9, 0.4) forwards;
+  animation: radius-in 1s ease-in forwards;
+  animation-delay: calc((var(--count) - var(--i) - 1) * 0.12s);
 }
 
 /* =====================
    ANIMATIONS
 ===================== */
 
-@keyframes heartbeat {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  15% {
-    transform: scale(1.12);
-  }
-  45% {
-    transform: scale(1.08);
-  }
-}
-
-@keyframes awaken {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.25);
-  }
-}
-
-/* 궤도 배치 회전 */
-@keyframes spin-out {
+/* orbit 회전 */
+@keyframes orbit-out {
   from {
     transform: rotate(0deg);
   }
@@ -154,26 +132,34 @@ body {
   }
 }
 
-/* ✅ 펼쳐지기 */
+@keyframes orbit-in {
+  from {
+    transform: rotate(var(--angle));
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+/* 반경 이동 */
 @keyframes radius-out {
   from {
-    transform: rotate(0deg) translateX(60px) scale(0.7);
+    transform: translateX(60px) scale(0.7);
     opacity: 0;
   }
   to {
-    transform: rotate(0deg) translateX(180px) scale(1);
+    transform: translateX(180px) scale(1);
     opacity: 1;
   }
 }
 
-/* ✅ 돌아서 빨려들기 (핵심) */
 @keyframes radius-in {
   from {
-    transform: rotate(0deg) translateX(180px) scale(1);
+    transform: translateX(180px) scale(1);
     opacity: 1;
   }
   to {
-    transform: rotate(-360deg) translateX(60px) scale(0.7);
+    transform: translateX(60px) scale(0.7);
     opacity: 0;
   }
 }
