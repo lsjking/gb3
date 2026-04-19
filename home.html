@@ -31,24 +31,21 @@
     <div class="orbit-wrapper">
       <input type="checkbox" id="menu-toggle" />
 
-      <!-- CORE -->
+      <!-- ===== CORE (Layered) ===== -->
       <label for="menu-toggle" class="menu-btn">
-        <span>LINK START</span>
+        <!-- ✅ idle / glow 전용 레이어 -->
+        <span class="core-glow"></span>
+
+        <!-- ✅ 텍스트 레이어 -->
+        <span class="core-label">LINK START</span>
       </label>
 
       <!-- ===== AI STATUS TEXT ===== -->
       <div class="ai-text">
-        <span class="standby">Awaiting user signal.</span>
-        <span class="analysis">Analyzing parameters.</span>
-        <span class="alert">⚠ Threat detected.</span>
+        <span class="standby">IDLE · Awaiting user signal.</span>
+        <span class="analysis">SCAN · Analyzing parameters.</span>
+        <span class="alert">WARNING · Threat detected.</span>
         <span class="sleep">Minimal cognition active.</span>
-        <span class="link">Link established.</span>
-
-        <!-- ✅ 코어 hover 전용 메시지 -->
-        <span class="core">LINK READY.</span>
-
-        <!-- ✅ ALERT + 코어 hover 전용 메시지 -->
-        <span class="override">OVERRIDE READY.</span>
       </div>
 
       <!-- ===== STAGE ===== -->
@@ -81,9 +78,9 @@
           <a class="ball" data-label="CAREER"><span>CAREER</span></a>
         </div>
         <div class="orbit" style="--i: 9">
-          <a class="ball" data-label="HELP" href="team.html"
-            ><span>HELP</span></a
-          >
+          <a class="ball" data-label="HELP" href="team.html">
+            <span>HELP</span>
+          </a>
         </div>
       </div>
     </div>

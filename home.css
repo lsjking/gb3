@@ -8,10 +8,15 @@
 body {
   margin: 0;
   height: 100vh;
-  background: var(
-    --bg-tint,
-    radial-gradient(circle at center, #eff6ff, #dbeafe 40%, #bfdbfe)
-  );
+  background:
+    radial-gradient(circle at center, #f8fbff 0%, #eef2ff 45%, #e0e7ff 70%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.015),
+      rgba(0, 0, 0, 0.015) 1px,
+      transparent 1px,
+      transparent 3px
+    );
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,8 +37,27 @@ input[type='radio'] {
   --core-scale: 1;
   --core-opacity: 1;
   --bg-tint: none;
-}
+  --orbit-radius: 245px;
 
+  --ball-hover-bg: #e0e7ff;
+  --ball-hover-glow: rgba(37, 99, 235, 0.35);
+}
+#mode-standby:checked ~ .orbit-wrapper {
+  --ball-hover-bg: #e0e7ff;
+  --ball-hover-glow: rgba(37, 99, 235, 0.35);
+}
+#mode-analysis:checked ~ .orbit-wrapper {
+  --ball-hover-bg: #cffafe;
+  --ball-hover-glow: rgba(56, 189, 248, 0.45);
+}
+#mode-alert:checked ~ .orbit-wrapper {
+  --ball-hover-bg: #fee2e2;
+  --ball-hover-glow: rgba(239, 68, 68, 0.55);
+}
+#mode-sleep:checked ~ .orbit-wrapper {
+  --ball-hover-bg: #e5e7eb;
+  --ball-hover-glow: rgba(148, 163, 184, 0.3);
+}
 /* ANALYSIS */
 #mode-analysis:checked ~ * {
   --ring-speed: 2.5s;
@@ -62,11 +86,12 @@ input[type='radio'] {
   position: absolute;
   top: 24px;
   left: 24px;
-  font-size: 12px;
-  opacity: 0.75;
+  font-family: 'Courier New', monospace; /* ✅ */
+  font-size: 11px; /* ✅ */
+  letter-spacing: 0.14em; /* ✅ */
+  opacity: 0.65; /* ✅ */
   line-height: 1.6;
 }
-
 .hud-status label {
   cursor: pointer;
   opacity: 0.6;
@@ -82,8 +107,8 @@ input[type='radio'] {
 ===================== */
 .orbit-wrapper {
   position: relative;
-  width: 400px;
-  height: 400px;
+  width: 520px;
+  height: 520px;
 }
 
 /* =====================
@@ -94,8 +119,8 @@ input[type='radio'] {
 }
 
 .menu-btn {
-  width: 120px;
-  height: 120px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
   background: radial-gradient(circle, #7dd3fc, var(--core-color));
   color: white;
@@ -114,8 +139,35 @@ input[type='radio'] {
   z-index: 10;
 
   box-shadow:
-    0 0 30px var(--glow-color),
-    0 0 60px var(--glow-color);
+    0 0 24px var(--glow-color),
+    0 0 90px var(--glow-color);
+}
+/* =====================
+   CORE IDLE PULSE (모드 상관없이)
+===================== */
+.orbit-wrapper .menu-btn:not(:hover) {
+  animation: core-idle-pulse 4s infinite ease-in-out;
+}
+
+@keyframes core-idle-pulse {
+  0% {
+    box-shadow:
+      0 0 22px var(--glow-color),
+      0 0 45px var(--glow-color);
+    transform: translate(-50%, -50%) scale(0.98);
+  }
+  50% {
+    box-shadow:
+      0 0 48px var(--glow-color),
+      0 0 110px var(--glow-color);
+    transform: translate(-50%, -50%) scale(1.05); /* ✅ 확실히 보임 */
+  }
+  100% {
+    box-shadow:
+      0 0 22px var(--glow-color),
+      0 0 45px var(--glow-color);
+    transform: translate(-50%, -50%) scale(0.98);
+  }
 }
 
 /* 코어 링 */
@@ -123,14 +175,14 @@ input[type='radio'] {
 .menu-btn::after {
   content: '';
   position: absolute;
-  inset: -20px;
+  inset: -40px;
   border-radius: 50%;
   border: 1px solid var(--glow-color);
   animation: core-spin var(--ring-speed) linear infinite;
 }
 
 .menu-btn::after {
-  inset: -40px;
+  inset: -60px;
   border-style: dashed;
   opacity: 0.4;
   animation-direction: reverse;
@@ -182,11 +234,11 @@ input[type='radio'] {
    BALL ✅ 핵심 변경
 ===================== */
 .ball {
-  width: 96px;
-  height: 96px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   background: #fffaf7;
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28);
 
   display: flex;
   justify-content: center;
@@ -196,12 +248,38 @@ input[type='radio'] {
   color: #222;
 
   /* ✅ 닫힌 상태 = 코어 내부 완전 수납 */
-  transform: translateX(0) scale(0.4);
+  transform: translateX(0) scale(0.4) translateZ(0);
   opacity: 0;
   pointer-events: none;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.ball:hover {
+  transform: translateX(var(--orbit-radius)) scale(1.06);
+  background-color: var(--ball-hover-bg);
+  box-shadow: 0 22px 42px var(--ball-hover-glow);
+  animation: ball-hover-pulse 1.2s ease-in-out infinite;
+}
+@keyframes ball-hover-pulse {
+  0% {
+    box-shadow: 0 22px 42px var(--ball-hover-glow);
+  }
+  50% {
+    box-shadow: 0 30px 60px var(--ball-hover-glow);
+  }
+  100% {
+    box-shadow: 0 22px 42px var(--ball-hover-glow);
+  }
 }
 
 .ball span {
+  font-size: 12.5px;
+  letter-spacing: 0.12em;
   white-space: nowrap;
   transform: rotate(calc(-1 * var(--angle)));
 }
@@ -241,19 +319,15 @@ input[type='radio'] {
 }
 
 @keyframes radius-out {
-  from {
-    transform: translateX(0) scale(0.4);
-    opacity: 0;
-  }
   to {
-    transform: translateX(180px) scale(1);
+    transform: translateX(var(--orbit-radius)) scale(1);
     opacity: 1;
   }
 }
 
 @keyframes radius-in {
   from {
-    transform: translateX(180px) scale(1);
+    transform: translateX(var(--orbit-radius)) scale(1);
     opacity: 1;
   }
   to {
@@ -266,20 +340,29 @@ input[type='radio'] {
 ===================== */
 .ai-text {
   position: absolute;
-  top: calc(50% + 90px);
+  top: calc(50% + 80px);
   left: 50%;
   transform: translateX(-50%);
+  width: 320px;
+  height: 1.4em;
+  text-align: center;
+  overflow: hidden;
   font-size: 12px;
   font-family: 'Courier New', monospace;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
   color: rgba(37, 99, 235, 0.85);
-  text-shadow: 0 0 6px rgba(37, 99, 235, 0.6);
-  opacity: 0.7;
+  opacity: 1;
+  text-shadow: none;
   pointer-events: none;
+  z-index: 5;
 }
 
 .ai-text span {
+  position: absolute; /* ✅ */
+  inset: 0;
+
   display: none;
+  text-align: center;
 }
 
 /* ===== 기본 상태 문구 ===== */
@@ -302,32 +385,23 @@ input[type='radio'] {
 /* =====================
    AI SPEAKING – BALL HOVER ONLY
 ===================== */
-.orbit-wrapper:has(.ball:hover) .ai-text {
-  animation: ai-speaking 1.4s infinite ease-in-out;
-}
 
 .orbit-wrapper:has(.ball:hover) .ai-text span {
-  display: none;
+  display: none !important;
 }
 
 .orbit-wrapper:has(.ball:hover) .ai-text::after {
   content: attr(data-label) ' command detected.';
-  color: rgba(56, 189, 248, 0.95);
-}
+  position: absolute;
+  inset: 0;
+  text-align: center;
 
-@keyframes ai-speaking {
-  0% {
-    opacity: 0.5;
-    transform: translateX(-50%) scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: translateX(-50%) scale(1.04);
-  }
-  100% {
-    opacity: 0.5;
-    transform: translateX(-50%) scale(1);
-  }
+  color: rgb(10, 176, 231); /* ✅ 완전 불투명 */
+  text-shadow: none;
+  opacity: 1;
+
+  -webkit-font-smoothing: antialiased;
+  font-smooth: always;
 }
 
 /* =====================
