@@ -8,41 +8,55 @@
   </head>
 
   <body>
-    <!-- MENU 토글 -->
-    <input type="checkbox" id="menu-toggle" />
-    <label for="menu-toggle" class="menu-btn">MENU</label>
+    <!-- ===== HUD STATUS ===== -->
+    <section class="hud-status">
+      <p>SYS : ONLINE</p>
+      <p>CORE TEMP : 36°C</p>
+      <p>MODE : STANDBY</p>
+    </section>
 
-    <!-- STAGE -->
-    <div class="stage" style="--count: 10">
-      <div class="orbit" style="--i: 0">
-        <a class="ball"><span>PROJECT</span></a>
-      </div>
-      <div class="orbit" style="--i: 1">
-        <a class="ball"><span>TEAM</span></a>
-      </div>
-      <div class="orbit" style="--i: 2">
-        <a class="ball"><span>ABOUT</span></a>
-      </div>
-      <div class="orbit" style="--i: 3">
-        <a class="ball"><span>CONTACT</span></a>
-      </div>
-      <div class="orbit" style="--i: 4">
-        <a class="ball"><span>BLOG</span></a>
-      </div>
-      <div class="orbit" style="--i: 5">
-        <a class="ball"><span>DEV</span></a>
-      </div>
-      <div class="orbit" style="--i: 6">
-        <a class="ball"><span>LAB</span></a>
-      </div>
-      <div class="orbit" style="--i: 7">
-        <a class="ball"><span>SHOP</span></a>
-      </div>
-      <div class="orbit" style="--i: 8">
-        <a class="ball"><span>CAREER</span></a>
-      </div>
-      <div class="orbit" style="--i: 9">
-        <a class="ball"><span>HELP</span></a>
+    <!-- ✅ 앱솔 + 궤도 공통 좌표계 -->
+    <div class="orbit-wrapper">
+      <!-- MENU 토글 -->
+      <input type="checkbox" id="menu-toggle" />
+
+      <!-- ABSOUL CORE -->
+      <label for="menu-toggle" class="menu-btn">
+        <span>ABS🔵UL</span>
+      </label>
+
+      <!-- STAGE -->
+      <div class="stage" style="--count: 10">
+        <div class="orbit" style="--i: 0">
+          <a class="ball"><span>PROJECT</span></a>
+        </div>
+        <div class="orbit" style="--i: 1">
+          <a class="ball"><span>TEAM</span></a>
+        </div>
+        <div class="orbit" style="--i: 2">
+          <a class="ball"><span>ABOUT</span></a>
+        </div>
+        <div class="orbit" style="--i: 3">
+          <a class="ball"><span>CONTACT</span></a>
+        </div>
+        <div class="orbit" style="--i: 4">
+          <a class="ball"><span>BLOG</span></a>
+        </div>
+        <div class="orbit" style="--i: 5">
+          <a class="ball"><span>DEV</span></a>
+        </div>
+        <div class="orbit" style="--i: 6">
+          <a class="ball"><span>LAB</span></a>
+        </div>
+        <div class="orbit" style="--i: 7">
+          <a class="ball"><span>SHOP</span></a>
+        </div>
+        <div class="orbit" style="--i: 8">
+          <a class="ball"><span>CAREER</span></a>
+        </div>
+        <div class="orbit" style="--i: 9">
+          <a class="ball"><span>HELP</span></a>
+        </div>
       </div>
     </div>
   </body>

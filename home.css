@@ -1,5 +1,5 @@
 /* =====================
-   RESET / BASE
+   BASE
 ===================== */
 * {
   box-sizing: border-box;
@@ -16,7 +16,28 @@ body {
 }
 
 /* =====================
-   MENU 버튼
+   HUD STATUS
+===================== */
+.hud-status {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  font-size: 12px;
+  opacity: 0.7;
+  line-height: 1.6;
+}
+
+/* =====================
+   ✅ ORBIT WRAPPER (핵심)
+===================== */
+.orbit-wrapper {
+  position: relative;
+  width: 400px;
+  height: 400px;
+}
+
+/* =====================
+   MENU / ABSOUL CORE
 ===================== */
 #menu-toggle {
   display: none;
@@ -35,7 +56,12 @@ body {
   align-items: center;
 
   cursor: pointer;
+
+  /* ✅ wrapper 기준 정확한 중앙 */
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 10;
 }
 
@@ -44,8 +70,8 @@ body {
 ===================== */
 .stage {
   position: relative;
-  width: 400px;
-  height: 400px;
+  width: 100%;
+  height: 100%;
 }
 
 /* =====================
@@ -60,17 +86,16 @@ body {
 
   transform-origin: center;
   --angle: calc(360deg / var(--count) * var(--i));
-
   transform: rotate(0deg);
 }
 
-/* ✅ 펼칠 때: 순차 회전 */
+/* OPEN */
 #menu-toggle:checked ~ .stage .orbit {
   animation: orbit-out 1.2s ease-out forwards;
   animation-delay: calc(var(--i) * 0.12s);
 }
 
-/* ✅ 닫힐 때: 같은 궤도로 복귀 */
+/* CLOSE */
 #menu-toggle:not(:checked) ~ .stage .orbit {
   animation: orbit-in 1s ease-in forwards;
   animation-delay: calc((var(--count) - var(--i) - 1) * 0.12s);
@@ -102,17 +127,13 @@ body {
   transform: rotate(calc(-1 * var(--angle)));
 }
 
-/* =====================
-   OPEN / CLOSE
-===================== */
-
-/* ✅ 펼칠 때 */
+/* OPEN BALL */
 #menu-toggle:checked ~ .stage .orbit .ball {
   animation: radius-out 1.2s ease-out forwards;
   animation-delay: calc(var(--i) * 0.12s);
 }
 
-/* ✅ 닫힐 때 */
+/* CLOSE BALL */
 #menu-toggle:not(:checked) ~ .stage .orbit .ball {
   animation: radius-in 1s ease-in forwards;
   animation-delay: calc((var(--count) - var(--i) - 1) * 0.12s);
@@ -121,8 +142,6 @@ body {
 /* =====================
    ANIMATIONS
 ===================== */
-
-/* orbit 회전 */
 @keyframes orbit-out {
   from {
     transform: rotate(0deg);
@@ -141,7 +160,6 @@ body {
   }
 }
 
-/* 반경 이동 */
 @keyframes radius-out {
   from {
     transform: translateX(60px) scale(0.7);
