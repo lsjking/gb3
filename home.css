@@ -167,7 +167,7 @@ input[type='radio'] {
     box-shadow:
       0 0 48px var(--glow-color),
       0 0 110px var(--glow-color);
-    transform: translate(-50%, -50%) scale(1.05); /* ✅ 확실히 보임 */
+    transform: translate(-50%, -50%) scale(1.05);
   }
   100% {
     box-shadow:
@@ -245,7 +245,7 @@ input[type='radio'] {
   height: 120px;
   border-radius: 50%;
 
-  /* ✅ 흰색 제거 → 글래스 느낌 */
+  /* 흰색 제거 → 글래스 느낌 */
   background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(10px);
 
@@ -389,10 +389,10 @@ input[type='radio'] {
   font-size: 18px;
   font-weight: 600;
 
-  letter-spacing: 0.08em; /* ✅ 자비스 느낌 핵심 */
+  letter-spacing: 0.08em; /* 자비스 느낌 핵심 */
   text-align: center;
 
-  color: #a5b4fc; /* ✅ 은은한 블루 */
+  color: #a5b4fc; /* 은은한 블루 */
   text-shadow:
     0 0 6px rgba(99, 102, 241, 0.35),
     0 0 14px rgba(99, 102, 241, 0.25);
@@ -589,12 +589,12 @@ input[type='radio'] {
   .hud-root {
     position: relative;
     --orbit-radius: 100px;
-    z-index: 100; /* ✅ HUD 위로 올림 */
+    z-index: 100; /* HUD 위로 올림 */
     pointer-events: auto;
   }
 
   .orbit-wrapper {
-    width: 340px; /* ✅ 520 → 340 */
+    width: 340px; /* 520 → 340 */
     height: 340px;
   }
 
@@ -620,7 +620,7 @@ input[type='radio'] {
   }
 
   .orbit-wrapper:has(.ball:hover) .ai-text::after {
-    font-size: 14px; /* ✅ 20 → 14 */
-    letter-spacing: 0.06em; /* ✅ 간격 줄이기 */
+    font-size: 14px; /* 20 → 14 */
+    letter-spacing: 0.06em; /* 간격 줄이기 */
   }
 }

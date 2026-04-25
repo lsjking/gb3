@@ -3,7 +3,7 @@
 ===================== */
 .lab-hero-image {
   max-width: 900px;
-  margin: 40px auto 16px; /* ✅ 아래 여백만 줄임 */
+  margin: 40px auto 16px; /* 아래 여백만 줄임 */
   padding: 0 1rem;
 }
 
@@ -21,7 +21,7 @@
 .lab-container {
   max-width: 900px;
   margin: 0 auto;
-  padding: 1.4rem 1rem 3rem; /* ✅ 상단 padding 줄임 */
+  padding: 1.4rem 1rem 3rem; /* 상단 padding 줄임 */
   display: grid;
   gap: 2rem;
 }
