@@ -6,43 +6,32 @@
   overflow: hidden;
 }
 
-/* =====================
-   SPLIT (HUD BODY)
-===================== */
 .demo-split {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* ✅ 영상 / 터미널 동일 비율 */
+  grid-template-columns: 1fr 1fr;
   gap: 2rem;
 
   width: 100%;
-  max-width: 1280px;
-  height: min(65vh, 560px);
+  max-width: 1400px;
+  height: calc(100vh - 160px);
 
   margin: 0 auto;
 
-  /* ✅ HUD 전체 떠 있는 애니메이션 */
   animation: hudFloat 6s ease-in-out infinite;
 }
 
-/* =====================
-   SHARED PANEL
-===================== */
 .demo-panel {
   height: 100%;
   border-radius: 16px;
   overflow: hidden;
   background: rgba(0, 0, 0, 0.45);
-  box-shadow:
-    0 0 40px rgba(110, 231, 255, 0.28),
-    inset 0 0 0 1px rgba(110, 231, 255, 0.12);
 }
 
-/* =====================
-   VIDEO
-===================== */
-.demo-video video {
+.demo-video video,
+.demo-video iframe {
   width: 100%;
   height: 100%;
+  border: none;
   object-fit: cover;
   background: black;
 }
