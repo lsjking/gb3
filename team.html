@@ -3,108 +3,135 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>팀원 소개 페이지</title>
+    <title>J.A.R.V.I.S – Absoul Interface</title>
+
+    <!-- ✅ JARVIS 전용 CSS -->
     <link rel="stylesheet" href="team.css" />
   </head>
 
-  <body>
+  <body class="jarvis-page">
+    <!-- =====================
+         HEADER / NAV
+    ====================== -->
+    <header>
+      <div class="header-left">
+        <a href="index.html" class="logo">
+          <span
+            style="
+              background: linear-gradient(135deg, #00eaff, #4fdcff);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+            "
+          >
+            ◉
+          </span>
+          J.A.R.V.I.S / Absoul
+        </a>
+
+        <ul class="nav-links">
+          <li>
+            <a href="index.html">CORE</a>
+          </li>
+          <li>
+            <a href="#modules">MODULES</a>
+          </li>
+          <li>
+            <a href="#about">ABOUT</a>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- =====================
+         MAIN CONTENT
+    ====================== -->
     <div class="container">
-      <!-- ✅ 위: 3D 캐러셀 -->
-      <div class="scene">
+      <!-- ✅ MODULE CAROUSEL -->
+      <div class="scene" id="modules">
         <div class="carousel">
           <div class="profile">
             <div class="profile-inner">
-              <img class="profile-img" src="https://via.placeholder.com/120" />
-              <h2>김정현</h2>
-              <p class="subtitle">🏄 매우 똑똑한 팀팀장장님</p>
+              <h2>🧠 Core Intelligence</h2>
+              <p class="subtitle">상황 인식 · 의사결정</p>
               <div class="info">
-                <p><b>학번</b>: 92513168</p>
-                <p><b>GitHub</b>: github.com/junghyunkim329</p>
+                <p>• Context Awareness</p>
+                <p>• Decision Logic</p>
+                <p>• AI Reasoning Core</p>
               </div>
             </div>
           </div>
 
           <div class="profile">
             <div class="profile-inner">
-              <img class="profile-img" src="https://via.placeholder.com/120" />
-              <h2>유청림</h2>
-              <p class="subtitle">🔥 차가운 도시 남자</p>
+              <h2>🔊 Voice Interface</h2>
+              <p class="subtitle">음성 기반 인터랙션</p>
               <div class="info">
-                <p><b>학번</b>: 92313465</p>
-                <p><b>GitHub</b>: github.com/Rocheong</p>
+                <p>• Speech-to-Text</p>
+                <p>• Command Parsing</p>
+                <p>• Real-time Response</p>
               </div>
             </div>
           </div>
 
           <div class="profile">
             <div class="profile-inner">
-              <img class="profile-img" src="https://via.placeholder.com/120" />
-              <h2>정현진</h2>
-              <p class="subtitle">🎨 감성 디자이너</p>
+              <h2>🔐 Security Monitor</h2>
+              <p class="subtitle">보안 · 이상 감지</p>
               <div class="info">
-                <p><b>학번</b>: 92513388</p>
-                <p><b>GitHub</b>: github.com/zkrxnp</p>
+                <p>• CAN Traffic Monitoring</p>
+                <p>• Anomaly Detection</p>
+                <p>• Automotive Security</p>
               </div>
             </div>
           </div>
 
           <div class="profile">
             <div class="profile-inner">
-              <img class="profile-img" src="https://via.placeholder.com/120" />
-              <h2>임성준</h2>
-              <p class="subtitle">🐯 창의적인 개척자</p>
+              <h2>🚗 Vehicle AI</h2>
+              <p class="subtitle">차량 지능 시스템</p>
               <div class="info">
-                <p><b>학번</b>: 92513388</p>
-                <p><b>GitHub</b>: github.com/lsjking</p>
+                <p>• ECU Communication</p>
+                <p>• Python 기반 분석</p>
+                <p>• 미래 차량 AI 연구</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ✅ 아래: 메인 -->
-      <div class="main">
-        <section>
-          <h3>🖐️ printf("Hello, World!")</h3>
-          <p><b>안녕하세요!</b> 인공지능에게 지고 싶지 않은 웹프4입니다.</p>
-          <p><b>💻🔐 전공 개념 · 사이트 · 퀴즈 제공</b></p>
-        </section>
+      <!-- ✅ CORE / ABOUT -->
+      <div class="main" id="about">
+        <section class="project-detail">
+          <h3 id="core">🧠 J.A.R.V.I.S Core System</h3>
 
-        <!-- ✅ CSS-only 명언 자동 전환 -->
-        <section class="quote-section">
-          <div class="quote">
-            “실패하지 않는다면 충분히 혁신하고 있지 않은 것이다.”
-            <span>– 일론 머스크</span>
-          </div>
+          <p>
+            이 페이지는 <b>임성준</b>의 개인 AI 어시스턴트 <b>Absoul</b>의
+            인터페이스입니다. 영화 속 자비스처럼 사용자의 맥락을 이해하고,
+            정보를 분석하며, 보안과 차량 AI 영역까지 확장하는 것을 목표로
+            합니다.
+          </p>
 
-          <div class="quote">
-            “성공은 최종적인 것이 아니며, 실패는 치명적인 것이 아니다. 계속하는
-            용기가 중요하다.”
-            <span>– 윈스턴 처칠</span>
-          </div>
+          <ul class="project-list">
+            <li>🔐 Automotive AI Security Engineer 지향</li>
+            <li>🚗 CAN / ECU 기반 차량 분석</li>
+            <li>🧠 상황 인지형 개인 AI Assistant</li>
+            <li>⚙️ Python · AI · Web Interface</li>
+          </ul>
 
-          <div class="quote">
-            “성공은 매일 반복되는 작은 노력의 합이다.”
-            <span>– 로버트 콜리어</span>
-          </div>
-
-          <div class="quote">
-            “성공한 사람들은 성공하지 못한 사람들이 하려고 하지 않는 것을 한다.”
-            <span>– 에릭 토마스</span>
-          </div>
-
-          <div class="quote">
-            “무언가가 충분히 중요하다면, 설령 성공 확률이 낮더라도 해야 한다.”
-            <span>– 일론 머스크</span>
-          </div>
-
-          <div class="quote">
-            “성공한 사람들은 재능이 있는 것이 아니다. 그들은 단지 열심히 일하고
-            의도적으로 성공한다.”
-            <span>– G.K. 니얼슨</span>
-          </div>
+          <p class="project-note">
+            “Sometimes you gotta run before you can walk.”
+            <br />
+            — Tony Stark
+          </p>
         </section>
       </div>
     </div>
+
+    <!-- =====================
+         FOOTER
+    ====================== -->
+    <footer style="color: #6ee7ff; letter-spacing: 2px">
+      SYSTEM STATUS : ONLINE ● © 2026 LIM SEONGJUN (ABSOUL)
+    </footer>
   </body>
 </html>

@@ -1,28 +1,135 @@
-/* 기본 설정 */
-* {
-  box-sizing: border-box;
-}
-
+html,
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #dbeafe;
-  color: #222;
+  width: 100%;
+  overflow-x: hidden;
 }
-
-/* 레이아웃 */
-.container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 70px 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 70px;
+/* ===========================
+   JARVIS 페이지 기본 설정
+=========================== */
+.jarvis-page {
+  background: radial-gradient(circle at top, #061a2f, #02040a 70%);
+  color: #d6f6ff;
+  font-family: 'Orbitron', 'Pretendard', sans-serif;
 }
 
 /* ===========================
-   캐러셀
+   HEADER / NAV (JARVIS HUD)
+=========================== */
+header {
+  width: 100%;
+  padding: 18px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(2, 10, 20, 0.75);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 234, 255, 0.25);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.logo {
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #9cecff;
+  text-shadow: 0 0 8px rgba(0, 234, 255, 0.6);
+}
+
+/* ===== NAV LINKS ===== */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 26px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: #6ee7ff;
+  padding: 6px 2px;
+  transition:
+    color 0.3s ease,
+    text-shadow 0.3s ease;
+}
+.nav-links a::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -120%;
+  width: 120%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 234, 255, 0.9),
+    transparent
+  );
+  opacity: 0;
+  transform: translateY(-50%);
+}
+
+/* 레이저 언더라인 */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00eaff, transparent);
+  opacity: 0;
+  transform: scaleX(0.2);
+  transition: all 0.35s ease;
+}
+
+.nav-links a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(0, 234, 255, 0.9);
+}
+
+.nav-links a:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* 활성 메뉴 (선택) */
+.nav-links a.active {
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(0, 234, 255, 1);
+}
+
+.nav-links a.active::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* ===========================
+   컨테이너
+=========================== */
+.jarvis-page .container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+/* ===========================
+   3D 캐러셀 (JARVIS MODULES)
 =========================== */
 .scene {
   width: 420px;
@@ -30,7 +137,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 1200px;
+  perspective: 1400px;
 }
 
 .carousel {
@@ -38,18 +145,19 @@ body {
   height: 300px;
   position: relative;
   transform-style: preserve-3d;
-  animation: spin 10s linear infinite;
+  animation: spin 45s linear infinite;
 }
 
-/* ✅ hover: 회전 느려짐 */
 .carousel:hover {
-  animation-duration: 30s;
+  animation-duration: 45s;
 }
 
-/* 카드 배치 */
+/* ===========================
+   모듈 카드 배치
+=========================== */
 .profile {
   position: absolute;
-  width: 260px;
+  width: 280px;
   top: 50%;
   left: 50%;
   transition: opacity 0.3s ease;
@@ -68,7 +176,6 @@ body {
   transform: translate(-50%, -50%) rotateY(270deg) translateZ(380px);
 }
 
-/* ✅ hover: 다른 카드 흐리게 */
 .carousel:hover .profile {
   opacity: 0.25;
 }
@@ -77,39 +184,57 @@ body {
   opacity: 1;
 }
 
-/* 카드 UI */
+/* ===========================
+   JARVIS 홀로그램 카드 UI
+=========================== */
 .profile-inner {
-  background: #fffaf7;
+  background: rgba(0, 234, 255, 0.08);
   padding: 26px;
-  border-radius: 18px;
+  border-radius: 20px;
   text-align: center;
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(0, 234, 255, 0.4);
+  box-shadow:
+    0 0 18px rgba(0, 234, 255, 0.35),
+    inset 0 0 12px rgba(0, 234, 255, 0.15);
+  backdrop-filter: blur(14px);
   transition:
     transform 0.35s ease,
     box-shadow 0.35s ease;
 }
 
-/* ✅ hover 확대 */
+.profile-inner h2 {
+  color: #4fdcff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(79, 220, 255, 0.9);
+}
+
+.profile-inner .subtitle {
+  font-size: 13px;
+  color: #9cecff;
+  margin-top: 6px;
+  letter-spacing: 0.5px;
+}
+
 .profile:hover .profile-inner {
   transform: scale(1.08);
-  box-shadow: 0 24px 46px rgba(0, 0, 0, 0.32);
+  box-shadow:
+    0 0 30px rgba(0, 234, 255, 0.65),
+    inset 0 0 18px rgba(0, 234, 255, 0.25);
 }
 
-.profile-img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-}
-
-/* ✅ info hover */
+/* ===========================
+   모듈 상세 정보
+=========================== */
 .info {
-  margin-top: 14px;
-  font-size: 13px;
-  line-height: 1.5;
+  margin-top: 16px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: #d6f6ff;
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.35s ease;
 }
 
 .profile:hover .info {
@@ -118,94 +243,65 @@ body {
 }
 
 /* ===========================
-   메인
+   메인 시스템 영역
 =========================== */
 .main {
   width: 100%;
-  background: linear-gradient(180deg, #fffaf7, #fff3ea);
-  padding: 24px 36px;
-  border-radius: 20px;
-  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.14);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 40, 60, 0.85),
+    rgba(0, 20, 35, 0.9)
+  );
+  padding: 28px 38px;
+  border-radius: 22px;
+  border: 1px solid rgba(0, 234, 255, 0.35);
+  box-shadow: 0 0 26px rgba(0, 234, 255, 0.25);
 }
 
 .main h3 {
   font-size: 24px;
+  color: #4fdcff;
+  text-shadow: 0 0 12px rgba(79, 220, 255, 0.8);
+}
+
+.project-detail p {
+  margin-top: 14px;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.project-list {
+  margin-top: 18px;
+  list-style: none;
+  padding-left: 0;
+}
+
+.project-list li {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #9cecff;
+  padding-left: 20px;
+  position: relative;
+}
+
+.project-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #00eaff;
+}
+
+.project-note {
+  margin-top: 18px;
+  font-size: 13px;
+  color: #78dfff;
+  opacity: 0.85;
+  font-style: italic;
 }
 
 /* ===========================
-   명언 자동 전환 (CSS-only)
+   애니메이션
 =========================== */
-.quote-section {
-  position: relative;
-  margin-top: 30px;
-  height: 140px;
-}
-
-.quote {
-  position: absolute;
-  inset: 0;
-  padding: 18px 22px;
-  opacity: 0;
-
-  background: rgba(255, 255, 255, 0.65);
-  border-left: 4px solid #f59e0b;
-  border-radius: 14px;
-
-  font-style: italic;
-  line-height: 1.7;
-  animation: quoteFade 24s infinite;
-}
-
-.quote span {
-  display: block;
-  margin-top: 8px;
-  text-align: right;
-  font-size: 13px;
-  color: #888;
-}
-
-/* 타이밍 */
-.quote:nth-child(1) {
-  animation-delay: 0s;
-}
-.quote:nth-child(2) {
-  animation-delay: 4s;
-}
-.quote:nth-child(3) {
-  animation-delay: 8s;
-}
-.quote:nth-child(4) {
-  animation-delay: 12s;
-}
-.quote:nth-child(5) {
-  animation-delay: 16s;
-}
-.quote:nth-child(6) {
-  animation-delay: 20s;
-}
-
-/* 애니메이션 */
-@keyframes quoteFade {
-  0% {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  5% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  25% {
-    opacity: 1;
-  }
-  30% {
-    opacity: 0;
-    transform: translateY(-6px);
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
 @keyframes spin {
   from {
     transform: rotateY(0deg);
