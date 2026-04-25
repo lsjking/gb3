@@ -142,3 +142,43 @@ header {
   opacity: 1;
   transform: scaleX(1);
 }
+
+@media (max-width: 1024px) {
+  header {
+    height: 45px; /* ✅ 모바일 헤더 높이 */
+
+    padding: 0 12px;
+    display: flex;
+  }
+
+  .header-left {
+    gap: 8px; /* ✅ 로고–메뉴 간격 축소 */
+    padding-right: 12px;
+  }
+
+  .logo {
+    font-size: 18px;
+    letter-spacing: 0.9px;
+  }
+
+  /* NAV */
+  .nav-links {
+    gap: 10px; /* ✅ 메뉴 간격 */
+  }
+
+  .nav-links a {
+    height: 100%; /* ✅ header 기준 */
+    display: flex;
+    align-items: center; /* ✅ 세로 중앙 */
+    line-height: 1; /* ✅ baseline 문제 제거 */
+
+    font-size: 10px; /* ✅ 모바일 글씨 크기 */
+    letter-spacing: 0.3px;
+    padding: 0; /* ✅ 위아래 padding 제거 */
+  }
+
+  /* 언더라인 위치 미세 조정 */
+  .nav-links a::after {
+    bottom: -3px;
+  }
+}

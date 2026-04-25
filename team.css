@@ -202,3 +202,61 @@
     transform: rotateY(360deg);
   }
 }
+/* ===========================
+   TEAM PAGE RESPONSIVE (MOBILE)
+=========================== */
+@media (max-width: 768px) {
+  /* 컨테이너 여백 축소 */
+  .jarvis-page .container {
+    padding: 40px 20px;
+    gap: 30px;
+  }
+
+  /* 3D 씬 축소 */
+  .scene {
+    width: 320px;
+    height: 320px;
+  }
+
+  .carousel {
+    width: 240px;
+    height: 240px;
+  }
+
+  /* 카드 크기 축소 */
+  .profile {
+    width: 220px;
+  }
+
+  /* ✅ 핵심: Z축 거리 줄이기 */
+  .profile:nth-child(1) {
+    transform: translate(-50%, -50%) rotateY(0deg) translateZ(260px);
+  }
+  .profile:nth-child(2) {
+    transform: translate(-50%, -50%) rotateY(90deg) translateZ(260px);
+  }
+  .profile:nth-child(3) {
+    transform: translate(-50%, -50%) rotateY(180deg) translateZ(260px);
+  }
+  .profile:nth-child(4) {
+    transform: translate(-50%, -50%) rotateY(270deg) translateZ(260px);
+  }
+
+  /* 텍스트 살짝 줄이기 */
+  .profile-inner h2 {
+    font-size: 16px;
+  }
+
+  .profile-inner .subtitle {
+    font-size: 12px;
+  }
+
+  .info {
+    font-size: 12px;
+  }
+
+  /* About Me 박스 여백 축소 */
+  .main {
+    padding: 22px 20px;
+  }
+}

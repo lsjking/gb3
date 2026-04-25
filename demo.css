@@ -1,3 +1,4 @@
+/* DEMO CENTER  */
 .demo-center {
   height: calc(100vh - var(--header-h));
   display: flex;
@@ -6,6 +7,9 @@
   overflow: hidden;
 }
 
+/* =====================
+   DEMO SPLIT LAYOUT
+===================== */
 .demo-split {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -20,6 +24,9 @@
   animation: hudFloat 6s ease-in-out infinite;
 }
 
+/* =====================
+   PANELS
+===================== */
 .demo-panel {
   height: 100%;
   border-radius: 16px;
@@ -27,6 +34,9 @@
   background: rgba(0, 0, 0, 0.45);
 }
 
+/* =====================
+   VIDEO
+===================== */
 .demo-video video,
 .demo-video iframe {
   width: 100%;
@@ -71,7 +81,7 @@
 }
 
 /* =====================
-   FOOTER
+   FOOTER (OPTIONAL)
 ===================== */
 .demo-footer {
   margin-top: 1.2rem;
@@ -84,8 +94,6 @@
 /* =====================
    ANIMATIONS
 ===================== */
-
-/* ✅ HUD 전체 부유 */
 @keyframes hudFloat {
   0% {
     transform: translateY(0);
@@ -126,5 +134,35 @@
   }
   50% {
     box-shadow: 0 0 22px rgba(110, 231, 255, 0.3);
+  }
+}
+
+/* =====================
+   ✅ DEMO RESPONSIVE (MOBILE)
+===================== */
+@media (max-width: 768px) {
+  .demo-center {
+    height: auto;
+    padding: 1rem 0;
+  }
+
+  .demo-split {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 1.2rem;
+    animation: none;
+  }
+
+  .demo-panel {
+    min-height: 240px;
+    height: auto;
+  }
+
+  .terminal {
+    font-size: 0.85rem;
+  }
+
+  .demo-video iframe {
+    aspect-ratio: 16 / 9;
   }
 }

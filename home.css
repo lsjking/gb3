@@ -582,3 +582,45 @@ input[type='radio'] {
     box-shadow: 0 0 10px rgba(148, 163, 184, 0.25);
   }
 }
+/* =====================
+   INDEX RESPONSIVE (MOBILE)
+===================== */
+@media (max-width: 768px) {
+  .hud-root {
+    position: relative;
+    --orbit-radius: 100px;
+    z-index: 100; /* ✅ HUD 위로 올림 */
+    pointer-events: auto;
+  }
+
+  .orbit-wrapper {
+    width: 340px; /* ✅ 520 → 340 */
+    height: 340px;
+  }
+
+  .orbit-wrapper,
+  .stage {
+    pointer-events: none;
+  }
+
+  .menu-btn {
+    pointer-events: auto;
+    width: 110px;
+    height: 110px;
+  }
+  .ball {
+    width: 90px;
+    height: 90px;
+  }
+
+  .ai-text {
+    width: 280px;
+    font-size: 14px;
+    top: calc(50% + 50px);
+  }
+
+  .orbit-wrapper:has(.ball:hover) .ai-text::after {
+    font-size: 14px; /* ✅ 20 → 14 */
+    letter-spacing: 0.06em; /* ✅ 간격 줄이기 */
+  }
+}
