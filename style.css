@@ -18,13 +18,24 @@ body {
 }
 
 /* ---------- GLOBAL BACKGROUND ---------- */
+/* ---------- GLOBAL BACKGROUND ---------- */
 body {
-  background: radial-gradient(
-    circle at top,
-    var(--jarvis-bg-deep),
-    var(--jarvis-bg-dark) 70%
-  );
+  background:
+    /* 중앙 코어 글로우 */
+    radial-gradient(
+      circle at center,
+      rgba(219, 7, 7, 0.45) 0%,
+      rgba(177, 133, 31, 0.25) 20%,
+      rgba(0, 255, 85, 0.15) 35%,
+      transparent 55%
+    ),
+    /* 전체 공간 그라데이션 */
+    radial-gradient(
+        circle at center,
+        var(--jarvis-bg-deep),
+        var(--jarvis-bg-dark) 70%
+      );
 
-  /* ✅ 핵심 수정: 기본 텍스트 색 추가 */
-  color: #d6f6ff;
+  background-attachment: fixed;
+  color: #ffffff;
 }
