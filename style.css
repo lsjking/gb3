@@ -15,6 +15,7 @@ body {
 :root {
   --jarvis-bg-dark: #06133b;
   --jarvis-bg-deep: #5379a1;
+  --header-h: 64px;
 }
 
 /* ---------- GLOBAL BACKGROUND ---------- */
@@ -38,4 +39,106 @@ body {
 
   background-attachment: fixed;
   color: #ffffff;
+}
+/* ===========================
+   HEADER / NAV (JARVIS HUD)
+=========================== */
+header {
+  width: 100%;
+  padding: 18px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(2, 10, 20, 0.75);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 234, 255, 0.25);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.logo {
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #9cecff;
+  text-shadow: 0 0 8px rgba(0, 234, 255, 0.6);
+}
+
+/* ===== NAV LINKS ===== */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 26px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: #6ee7ff;
+  padding: 6px 2px;
+  transition:
+    color 0.3s ease,
+    text-shadow 0.3s ease;
+}
+.nav-links a::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -120%;
+  width: 120%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 234, 255, 0.9),
+    transparent
+  );
+  opacity: 0;
+  transform: translateY(-50%);
+}
+
+/* 레이저 언더라인 */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00eaff, transparent);
+  opacity: 0;
+  transform: scaleX(0.2);
+  transition: all 0.35s ease;
+}
+
+.nav-links a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(0, 234, 255, 0.9);
+}
+
+.nav-links a:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* 활성 메뉴 (선택) */
+.nav-links a.active {
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(0, 234, 255, 1);
+}
+
+.nav-links a.active::after {
+  opacity: 1;
+  transform: scaleX(1);
 }

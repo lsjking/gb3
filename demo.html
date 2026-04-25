@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>J.A.R.V.I.S :: DEMO</title>
+
+    <!-- Global (NAV 통합) -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Demo only -->
+    <link rel="stylesheet" href="demo.css" />
+  </head>
+
+  <body>
+    <!-- ===========================
+         JARVIS HUD NAV
+    =========================== -->
+    <header>
+      <div class="header-left">
+        <a href="index.html" class="logo">
+          <span
+            style="
+              background: linear-gradient(135deg, #00eaff, #4fdcff);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+            "
+          >
+            ◉
+          </span>
+          J.A.R.V.I.S / Absoul
+        </a>
+      </div>
+    </header>
+
+    <!-- ===================
+         CENTERED DEMO
+    =================== -->
+    <main class="demo-center">
+      <div class="demo-split">
+        <!-- VIDEO PANEL -->
+        <section class="demo-panel demo-video">
+          <video src="demo.mp4" autoplay muted loop controls></video>
+        </section>
+
+        <!-- TERMINAL PANEL -->
+        <section class="demo-panel terminal">
+          <div class="line system" style="animation-delay: 0.2s">
+            [SYSTEM] Initializing AI agent...
+          </div>
+          <div class="line system" style="animation-delay: 0.6s">
+            [SYSTEM] Voice interface ready.
+          </div>
+          <div class="line system" style="animation-delay: 1s">
+            [SYSTEM] Waiting for user input.
+          </div>
+
+          <div class="line user" style="animation-delay: 1.6s">
+            [USER] Jarvis, analyze vehicle network status.
+          </div>
+
+          <div class="line ai analyzing" style="animation-delay: 2.2s">
+            [J.A.R.V.I.S] Analyzing CAN traffic...
+          </div>
+
+          <div class="line ai" style="animation-delay: 3.4s">
+            [J.A.R.V.I.S] No anomalies detected.
+          </div>
+
+          <div class="line ai" style="animation-delay: 4.2s">
+            [J.A.R.V.I.S] Vehicle systems operating within normal parameters.
+          </div>
+
+          <div class="line system" style="animation-delay: 5s">
+            [SYSTEM] Demo sequence completed.
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
