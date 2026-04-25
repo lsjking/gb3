@@ -3,86 +3,111 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ABS🔵UL HUD</title>
+    <title>J.A.R.V.I.S</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- HUD 전용 스타일 -->
     <link rel="stylesheet" href="home.css" />
   </head>
 
-  <body>
-    <!-- ===== STATE MODES ===== -->
-    <input type="radio" name="mode" id="mode-standby" checked />
-    <input type="radio" name="mode" id="mode-analysis" />
-    <input type="radio" name="mode" id="mode-alert" />
-    <input type="radio" name="mode" id="mode-sleep" />
+  <body class="no-anim">
+    <!-- ================================================= -->
+    <!-- ✅ HUD ROOT -->
+    <!-- ================================================= -->
+    <div class="hud-root">
+      <!-- ===== STATE MODES ===== -->
+      <input type="radio" name="mode" id="mode-standby" checked />
+      <input type="radio" name="mode" id="mode-analysis" />
+      <input type="radio" name="mode" id="mode-alert" />
+      <input type="radio" name="mode" id="mode-sleep" />
 
-    <!-- ===== HUD STATUS ===== -->
-    <section class="hud-status">
-      <p>SYS : ONLINE</p>
-      <p>CORE TEMP : 36°C</p>
-      <p>
-        MODE :
-        <label for="mode-standby">STANDBY</label> |
-        <label for="mode-analysis">ANALYSIS</label> |
-        <label for="mode-alert">ALERT</label> |
-        <label for="mode-sleep">SLEEP</label>
-      </p>
-    </section>
+      <!-- ===== HUD STATUS ===== -->
+      <section class="hud-status">
+        <p>
+          MODE :
+          <label for="mode-standby">STANDBY</label> |
+          <label for="mode-analysis">ANALYSIS</label> |
+          <label for="mode-alert">ALERT</label> |
+          <label for="mode-sleep">SLEEP</label>
+        </p>
+      </section>
 
-    <!-- ===== ABSOUL + ORBIT ===== -->
-    <div class="orbit-wrapper">
-      <input type="checkbox" id="menu-toggle" />
+      <!-- ===== J.A.R.V.I.S CORE + ORBIT ===== -->
+      <div class="orbit-wrapper">
+        <input type="checkbox" id="menu-toggle" checked />
 
-      <!-- ===== CORE (Layered) ===== -->
-      <label for="menu-toggle" class="menu-btn">
-        <!-- ✅ idle / glow 전용 레이어 -->
-        <span class="core-glow"></span>
+        <!-- CORE -->
+        <label for="menu-toggle" class="menu-btn">
+          <span class="core-glow"></span>
+          <span class="core-label">J.A.R.V.I.S</span>
+        </label>
 
-        <!-- ✅ 텍스트 레이어 -->
-        <span class="core-label">LINK START</span>
-      </label>
+        <!-- AI TEXT -->
+        <div class="ai-text">
+          <span class="standby">
+            <strong class="ai-label">JARVIS ONLINE</strong>
+            <span class="ai-msg">Awaiting instructions.</span>
+          </span>
 
-      <!-- ===== AI STATUS TEXT ===== -->
-      <div class="ai-text">
-        <span class="standby">IDLE · Awaiting user signal.</span>
-        <span class="analysis">SCAN · Analyzing parameters.</span>
-        <span class="alert">WARNING · Threat detected.</span>
-        <span class="sleep">Minimal cognition active.</span>
-      </div>
+          <span class="analysis">
+            <strong class="ai-label">JARVIS ANALYSIS</strong>
+            <span class="ai-msg">Scanning environment.</span>
+          </span>
 
-      <!-- ===== STAGE ===== -->
-      <div class="stage" style="--count: 10">
-        <div class="orbit" style="--i: 0">
-          <a class="ball" data-label="PROJECT"><span>PROJECT</span></a>
+          <span class="alert">
+            <strong class="ai-label">JARVIS ALERT</strong>
+            <span class="ai-msg">Threat detected.</span>
+          </span>
+
+          <span class="sleep">
+            <strong class="ai-label">JARVIS STANDBY</strong>
+            <span class="ai-msg">Minimal systems active.</span>
+          </span>
         </div>
-        <div class="orbit" style="--i: 1">
-          <a class="ball" data-label="TEAM"><span>TEAM</span></a>
-        </div>
-        <div class="orbit" style="--i: 2">
-          <a class="ball" data-label="ABOUT"><span>ABOUT</span></a>
-        </div>
-        <div class="orbit" style="--i: 3">
-          <a class="ball" data-label="CONTACT"><span>CONTACT</span></a>
-        </div>
-        <div class="orbit" style="--i: 4">
-          <a class="ball" data-label="BLOG"><span>BLOG</span></a>
-        </div>
-        <div class="orbit" style="--i: 5">
-          <a class="ball" data-label="DEV"><span>DEV</span></a>
-        </div>
-        <div class="orbit" style="--i: 6">
-          <a class="ball" data-label="LAB"><span>LAB</span></a>
-        </div>
-        <div class="orbit" style="--i: 7">
-          <a class="ball" data-label="SHOP"><span>SHOP</span></a>
-        </div>
-        <div class="orbit" style="--i: 8">
-          <a class="ball" data-label="CAREER"><span>CAREER</span></a>
-        </div>
-        <div class="orbit" style="--i: 9">
-          <a class="ball" data-label="HELP" href="team.html">
-            <span>HELP</span>
-          </a>
+
+        <!-- STAGE -->
+        <div class="stage" style="--count: 8">
+          <div class="orbit" style="--i: 0">
+            <a class="ball" href="team.html"><span>팀소개</span></a>
+          </div>
+
+          <div class="orbit" style="--i: 1">
+            <a class="ball disabled" href="./pages/learn.html">
+              <span>학습</span>
+            </a>
+          </div>
+
+          <div class="orbit" style="--i: 2">
+            <a class="ball disabled"><span>INFO</span></a>
+          </div>
+
+          <div class="orbit" style="--i: 3">
+            <a class="ball disabled"><span>BLOG</span></a>
+          </div>
+
+          <div class="orbit" style="--i: 4">
+            <a class="ball disabled"><span>DEV</span></a>
+          </div>
+
+          <div class="orbit" style="--i: 5">
+            <a class="ball disabled"><span>LAB</span></a>
+          </div>
+
+          <div class="orbit" style="--i: 6">
+            <a class="ball"><span>HELP</span></a>
+          </div>
+
+          <div class="orbit" style="--i: 7">
+            <a class="ball disabled" href="">
+              <span>QUIZ</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
+    <!-- ===== HUD ROOT END ===== -->
+    <footer style="color: #6ee7ff; letter-spacing: 2px">
+      SYSTEM STATUS : ONLINE ● © 2026 LIM SEONGJUN (ABSOUL)
+    </footer>
   </body>
 </html>
