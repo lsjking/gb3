@@ -1,5 +1,6 @@
 /* ===========================
    JARVIS 페이지 기본 설정
+   - HUD 느낌의 어두운 홀로그램 배경
 =========================== */
 .jarvis-page {
   background: radial-gradient(circle at top, #061a2f, #02040a 70%);
@@ -8,8 +9,9 @@
 }
 
 /* ===========================
-   컨테이너
+   컨텐츠 중앙 정렬 컨테이너
 =========================== */
+
 .jarvis-page .container {
   max-width: 1000px;
   margin: 0 auto;
@@ -21,8 +23,10 @@
 }
 
 /* ===========================
-   3D 캐러셀 (JARVIS MODULES)
+   3D 캐러셀 씬
+   - perspective로 깊이감 부여
 =========================== */
+
 .scene {
   width: 420px;
   height: 420px;
@@ -31,12 +35,13 @@
   align-items: center;
   perspective: 1400px;
 }
-
+/* 캐러셀 본체 */
 .carousel {
   width: 300px;
   height: 300px;
   position: relative;
   transform-style: preserve-3d;
+  /* 천천히 회전하는 JARVIS 모듈 */
   animation: spin 45s linear infinite;
 }
 
@@ -84,6 +89,7 @@
   padding: 26px;
   border-radius: 20px;
   text-align: center;
+  /* HUD 네온 테두리 */
   border: 1px solid rgba(0, 234, 255, 0.4);
   box-shadow:
     0 0 18px rgba(0, 234, 255, 0.35),

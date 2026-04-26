@@ -3,25 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>J.A.R.V.I.S</title>
-    <link rel="stylesheet" href="style.css" />
 
-    <!-- HUD 전용 스타일 -->
+    <!-- 메인 HUD 페이지 제목 -->
+    <title>J.A.R.V.I.S</title>
+
+    <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="home.css" />
   </head>
 
+  <!-- 애니메이션 제어용 클래스 -->
   <body class="no-anim">
-    <!-- ================================================= -->
-    <!-- HUD ROOT -->
-    <!-- ================================================= -->
+    <!-- =================================================
+         HUD ROOT
+         - 화면 중앙에 고정되는 J.A.R.V.I.S 메인 인터페이스
+    ================================================= -->
     <main class="hud-root">
-      <!-- ===== STATE MODES ===== -->
+      <!-- ===============================
+           STATE MODES (CSS STATE MACHINE)
+           - JS 없이 상태 제어
+           - 선택된 mode에 따라 전체 UI 동작 변경
+      ================================ -->
       <input type="radio" name="mode" id="mode-standby" checked />
       <input type="radio" name="mode" id="mode-analysis" />
       <input type="radio" name="mode" id="mode-alert" />
       <input type="radio" name="mode" id="mode-sleep" />
 
-      <!-- ===== HUD STATUS ===== -->
+      <!-- ===============================
+           HUD STATUS PANEL
+           - 현재 모드 표시 + 수동 모드 전환
+           - 좌측 상단 HUD 정보 영역
+      ================================ -->
       <section class="hud-status">
         <p>
           MODE :
@@ -32,85 +43,136 @@
         </p>
       </section>
 
-      <!-- ===== J.A.R.V.I.S CORE + ORBIT ===== -->
+      <!-- =================================================
+           CENTRAL CORE + ORBIT MENU SYSTEM
+           - JARVIS 코어 + 궤도형 메뉴 UI
+      ================================================= -->
       <div class="orbit-wrapper">
+        <!-- ===============================
+             MENU TOGGLE
+             - 체크 상태에 따라 메뉴 확장/축소
+             - 코어 클릭으로 제어
+        ================================ -->
         <input type="checkbox" id="menu-toggle" checked />
 
-        <!-- CORE -->
+        <!-- ===============================
+             J.A.R.V.I.S CORE BUTTON
+             - 중앙 AI 코어 (아크리액터 역할)
+             - hover / mode에 따라 펄스 변화
+        ================================ -->
         <label for="menu-toggle" class="menu-btn">
+          <!-- 시각적 글로우 레이어 -->
           <span class="core-glow"></span>
+
+          <!-- 코어 중앙 라벨 -->
           <span class="core-label">J.A.R.V.I.S</span>
         </label>
 
-        <!-- AI TEXT -->
+        <!-- ===============================
+             AI STATUS TEXT
+             - 현재 모드에 따른 AI 메시지
+             - 메뉴 hover 시 Command 메시지 표시
+        ================================ -->
         <div class="ai-text">
+          <!-- STANDBY 메시지 -->
           <span class="standby">
             <strong class="ai-label">JARVIS ONLINE</strong>
             <span class="ai-msg">Awaiting instructions.</span>
           </span>
 
+          <!-- ANALYSIS 메시지 -->
           <span class="analysis">
             <strong class="ai-label">JARVIS ANALYSIS</strong>
             <span class="ai-msg">Scanning environment.</span>
           </span>
 
+          <!-- ALERT 메시지 -->
           <span class="alert">
             <strong class="ai-label">JARVIS ALERT</strong>
             <span class="ai-msg">Threat detected.</span>
           </span>
 
+          <!-- SLEEP 메시지 -->
           <span class="sleep">
             <strong class="ai-label">JARVIS STANDBY</strong>
             <span class="ai-msg">Minimal systems active.</span>
           </span>
         </div>
 
-        <!-- STAGE -->
+        <!-- ===============================
+             STAGE (ORBIT MENU AREA)
+             - 원형으로 배치되는 메뉴 노드 영역
+             - --count : 전체 메뉴 개수
+        ================================ -->
         <nav class="stage" style="--count: 7">
+          <!-- [0] ABOUT PAGE -->
           <div class="orbit" style="--i: 0">
-            <a class="ball" href="team.html"><span>About</span></a>
+            <a class="ball" href="team.html">
+              <span>About</span>
+            </a>
           </div>
 
+          <!-- [1] AI STUDY / LAB -->
           <div class="orbit" style="--i: 1">
             <a class="ball" href="lab.html">
               <span>AI_Study</span>
             </a>
           </div>
 
+          <!-- [2] DEMO PAGE -->
           <div class="orbit" style="--i: 2">
-            <a class="ball" href="demo.html"><span>Demo</span></a>
+            <a class="ball" href="demo.html">
+              <span>Demo</span>
+            </a>
           </div>
+
+          <!-- [3] GITHUB (외부 링크) -->
           <div class="orbit" style="--i: 3">
             <a
               class="ball"
               target="_blank"
               href="https://github.com/lsjking/gb3"
-              ><span>Github</span></a
             >
+              <span>Github</span>
+            </a>
           </div>
+
+          <!-- [4] BLOG -->
           <div class="orbit" style="--i: 4">
             <a
               class="ball"
               target="_blank"
               href="https://lsjking911.tistory.com/"
-              ><span>Blog</span></a
             >
+              <span>Blog</span>
+            </a>
           </div>
+
+          <!-- [5] NOTION -->
           <div class="orbit" style="--i: 5">
             <a
               class="ball"
               target="_blank"
               href="https://www.notion.so/9c2a58614d4483d59c2f01d8abc2d405"
-              ><span>Notion</span></a
             >
+              <span>Notion</span>
+            </a>
           </div>
+
+          <!-- [6] DISABLED NODE (비활성 placeholder) -->
           <div class="orbit" style="--i: 6">
-            <a class="ball disable"><span>Disable</span></a>
+            <a class="ball disable">
+              <span>Disable</span>
+            </a>
           </div>
         </nav>
       </div>
     </main>
     <!-- ===== HUD ROOT END ===== -->
+
+    <!-- ===========================
+         FOOTER
+    ============================ -->
     <footer style="color: #6ee7ff; letter-spacing: 2px">
       SYSTEM STATUS : ONLINE ● © 2026 LIM SEONGJUN (ABSOUL)
     </footer>

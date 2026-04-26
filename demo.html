@@ -3,31 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- 데모 페이지 제목 -->
     <title>J.A.R.V.I.S :: DEMO</title>
 
-    <!-- Global (NAV 통합) -->
     <link rel="stylesheet" href="style.css" />
-
-    <!-- Demo only -->
     <link rel="stylesheet" href="demo.css" />
   </head>
 
   <body>
-    <!-- ===========================
-         JARVIS HUD NAV
-    =========================== -->
     <header>
       <nav class="header-left">
+        <!-- 메인 HUD(코어)로 돌아가기 -->
         <a href="index.html" class="logo"> J.A.R.V.I.S </a>
       </nav>
     </header>
 
-    <!-- ===================
-         CENTERED DEMO
-    =================== -->
+    <!-- ===========================
+         DEMO MAIN AREA
+         - 화면 중앙 정렬
+         - 시연 전용 몰입 영역
+    ============================ -->
     <main class="demo-center">
       <div class="demo-split">
-        <!-- VIDEO PANEL -->
+        <!-- =====================
+             VIDEO PANEL
+             - 실제 AI 데모 영상
+             - 자동 재생 / 무음 / 루프
+        ====================== -->
         <section class="demo-panel demo-video">
           <iframe
             title="Jarvis AI Demo Video"
@@ -38,26 +41,36 @@
           ></iframe>
         </section>
 
-        <!-- TERMINAL PANEL -->
+        <!-- =====================
+             TERMINAL PANEL
+             - AI 내부 동작을 텍스트 로그로 시각화
+             - SYSTEM / USER / AI 역할 분리
+        ====================== -->
         <section class="demo-panel terminal">
+          <!-- 시스템 초기화 로그 -->
           <div class="line system" style="animation-delay: 0.2s">
             [SYSTEM] Initializing AI agent...
           </div>
+
           <div class="line system" style="animation-delay: 0.6s">
             [SYSTEM] Voice interface ready.
           </div>
+
           <div class="line system" style="animation-delay: 1s">
             [SYSTEM] Waiting for user input.
           </div>
 
+          <!-- 사용자 명령 -->
           <div class="line user" style="animation-delay: 1.6s">
             [USER] Jarvis, analyze vehicle network status.
           </div>
 
+          <!-- AI 분석 중 상태 -->
           <div class="line ai analyzing" style="animation-delay: 2.2s">
             [J.A.R.V.I.S] Analyzing CAN traffic...
           </div>
 
+          <!-- AI 응답 -->
           <div class="line ai" style="animation-delay: 3.4s">
             [J.A.R.V.I.S] No anomalies detected.
           </div>
@@ -66,14 +79,21 @@
             [J.A.R.V.I.S] Vehicle systems operating within normal parameters.
           </div>
 
+          <!-- 데모 종료 -->
           <div class="line system" style="animation-delay: 5s">
             [SYSTEM] Demo sequence completed.
           </div>
         </section>
       </div>
     </main>
+
+    <!-- ===========================
+         FOOTER
+         - 시스템 온라인 상태 표시
+    ============================ -->
     <footer style="color: #6ee7ff; letter-spacing: 2px">
       SYSTEM STATUS : ONLINE ● © 2026 LIM SEONGJUN (ABSOUL)
     </footer>
   </body>
 </html>
+``

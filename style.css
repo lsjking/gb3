@@ -1,8 +1,10 @@
 /* ===================================
    J.A.R.V.I.S GLOBAL BACKGROUND
+   전체 레이아웃과 HUD 분위기를 담당하는 전역 스타일
 =================================== */
 
 /* ---------- RESET / BASE ---------- */
+/* 브라우저 기본 여백 제거 + 가로 스크롤 방지 */
 html,
 body {
   width: 100%;
@@ -12,17 +14,19 @@ body {
 }
 
 /* ---------- BACKGROUND TOKENS ---------- */
+/* JARVIS 테마에서 반복 사용될 컬러 및 고정 값 변수 */
 :root {
-  --jarvis-bg-dark: #06133b;
-  --jarvis-bg-deep: #5379a1;
-  --header-h: 64px;
+  --jarvis-bg-dark: #06133b; /* 외곽 우주 느낌의 다크 블루 */
+  --jarvis-bg-deep: #5379a1; /* 중앙부 그라데이션용 블루 */
+  --header-h: 64px; /* 헤더 기본 높이 */
 }
 
 /* ---------- GLOBAL BACKGROUND ---------- */
-/* ---------- GLOBAL BACKGROUND ---------- */
 body {
   background:
-    /* 중앙 코어 글로우 */
+    /* [1] 중앙 코어 글로우
+       - JARVIS 아크 리액터 느낌
+       - 빨강 → 금색 → 그린으로 에너지 흐름 표현 */
     radial-gradient(
       circle at center,
       rgba(219, 7, 7, 0.45) 0%,
@@ -30,45 +34,66 @@ body {
       rgba(0, 255, 85, 0.15) 35%,
       transparent 55%
     ),
-    /* 전체 공간 그라데이션 */
+    /* [2] 전체 공간 그라데이션
+       - HUD 전체 배경의 깊이감 형성 */
     radial-gradient(
         circle at center,
         var(--jarvis-bg-deep),
         var(--jarvis-bg-dark) 70%
       );
 
+  /* 스크롤 시 배경 고정 → HUD 패널 느낌 강화 */
   background-attachment: fixed;
+
+  /* 기본 텍스트 컬러 */
   color: #ffffff;
 }
+
 /* ===========================
    HEADER / NAV (JARVIS HUD)
 =========================== */
 header {
   width: 100%;
+
+  /* HUD 바 여백 */
   padding: 18px 40px;
+
+  /* 좌우 정렬 */
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  /* 반투명 HUD 유리 재질 */
   background: rgba(2, 10, 20, 0.75);
+
+  /* 배경 흐림 → 글래스모피즘 */
   backdrop-filter: blur(10px);
+
+  /* 하단 네온 라인 */
   border-bottom: 1px solid rgba(0, 234, 255, 0.25);
 }
 
+/* 헤더 왼쪽 영역 (로고 + 네비 메뉴) */
 .header-left {
   display: flex;
   align-items: center;
   gap: 40px;
 }
 
+/* JARVIS 로고 텍스트 */
 .logo {
   text-decoration: none;
   font-weight: 600;
   letter-spacing: 2px;
+
+  /* HUD 네온 라이트 블루 */
   color: #9cecff;
   text-shadow: 0 0 8px rgba(0, 234, 255, 0.6);
 }
 
 /* ===== NAV LINKS ===== */
+
+/* 네비게이션 리스트 */
 .nav-links {
   list-style: none;
   display: flex;
@@ -78,19 +103,24 @@ header {
 }
 
 .nav-links li {
-  position: relative;
+  position: relative; /* hover 이펙트 기준점 */
 }
 
+/* 메뉴 링크 기본 상태 */
 .nav-links a {
   text-decoration: none;
   font-size: 13px;
   letter-spacing: 1.5px;
   color: #6ee7ff;
   padding: 6px 2px;
+
+  /* 색상 & 글로우 트랜지션 */
   transition:
     color 0.3s ease,
     text-shadow 0.3s ease;
 }
+
+/* 좌우로 스캔되는 레이저 라인 (미사용이지만 효과용) */
 .nav-links a::before {
   content: '';
   position: absolute;
@@ -98,30 +128,37 @@ header {
   left: -120%;
   width: 120%;
   height: 1px;
+
   background: linear-gradient(
     90deg,
     transparent,
     rgba(0, 234, 255, 0.9),
     transparent
   );
+
   opacity: 0;
   transform: translateY(-50%);
 }
 
-/* 레이저 언더라인 */
+/* 하단 언더라인 레이저 */
 .nav-links a::after {
   content: '';
   position: absolute;
   left: 0;
   bottom: -6px;
+
   width: 100%;
   height: 2px;
+
+  /* 중앙이 가장 밝은 네온 라인 */
   background: linear-gradient(90deg, transparent, #00eaff, transparent);
+
   opacity: 0;
   transform: scaleX(0.2);
   transition: all 0.35s ease;
 }
 
+/* 마우스 오버 시 */
 .nav-links a:hover {
   color: #ffffff;
   text-shadow: 0 0 10px rgba(0, 234, 255, 0.9);
@@ -132,7 +169,7 @@ header {
   transform: scaleX(1);
 }
 
-/* 활성 메뉴 (선택) */
+/* 활성화된 메뉴 (현재 페이지 표시용) */
 .nav-links a.active {
   color: #ffffff;
   text-shadow: 0 0 12px rgba(0, 234, 255, 1);
@@ -143,41 +180,48 @@ header {
   transform: scaleX(1);
 }
 
+/* ===========================
+   MOBILE RESPONSIVE (≤768px)
+=========================== */
 @media (max-width: 768px) {
+  /* 모바일 헤더 */
   header {
-    height: 45px; /*  모바일 헤더 높이 */
-
-    padding: 0 12px;
+    height: 45px; /* 높이 축소 */
+    padding: 0 12px; /* 좌우 여백 감소 */
     display: flex;
   }
 
+  /* 로고와 메뉴 간격 축소 */
   .header-left {
-    gap: 8px; /*  로고–메뉴 간격 축소 */
+    gap: 8px;
     padding-right: 12px;
   }
 
+  /* 로고 크기 축소 */
   .logo {
     font-size: 18px;
     letter-spacing: 0.9px;
   }
 
-  /* NAV */
+  /* 모바일 네비 간격 */
   .nav-links {
-    gap: 10px; /*  메뉴 간격 */
+    gap: 10px;
   }
 
+  /* 모바일 메뉴 텍스트 */
   .nav-links a {
-    height: 100%; /*  header 기준 */
+    height: 100%;
     display: flex;
-    align-items: center; /*  세로 중앙 */
-    line-height: 1; /*  baseline 문제 제거 */
+    align-items: center; /* 세로 중앙 정렬 */
+    line-height: 1; /* baseline 문제 방지 */
 
-    font-size: 10px; /*  모바일 글씨 크기 */
+    font-size: 10px;
     letter-spacing: 0.3px;
-    padding: 0; /* 위아래 padding 제거 */
+
+    padding: 0; /* 클릭 영역 깔끔하게 */
   }
 
-  /* 언더라인 위치 미세 조정 */
+  /* 언더라인 위치 미세조정 */
   .nav-links a::after {
     bottom: -3px;
   }

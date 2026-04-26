@@ -3,21 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>J.A.R.V.I.S – Absoul Interface</title>
 
-    <!-- JARVIS 전용 CSS -->
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="team.css" />
   </head>
 
   <body class="jarvis-page">
-    <!-- =====================
-         HEADER / NAV
-    ====================== -->
     <header>
       <nav class="header-left">
+        <!-- 홈으로 돌아가는 JARVIS 로고 -->
         <a href="index.html" class="logo"> J.A.R.V.I.S </a>
 
+        <!-- 페이지 내부 섹션 이동 -->
         <ul class="nav-links">
           <li><a href="#modules">MODULES</a></li>
           <li><a href="#about">ABOUT ME</a></li>
@@ -27,15 +26,26 @@
 
     <!-- =====================
          MAIN CONTENT
+         - 페이지 핵심 영역
     ====================== -->
     <main class="container">
+      <!-- =====================
+           MODULES SECTION
+           - JARVIS 시스템 구성요소 시각화
+           - 3D 캐러셀 구조
+      ====================== -->
       <section class="scene" id="modules">
         <div class="carousel">
-          <!-- JARVIS CORE -->
+          <!-- =================
+               MODULE 01 : JARVIS CORE
+               - 전체 AI 사고 구조 설명
+          ================= -->
           <div class="profile">
             <div class="profile-inner">
               <h2>🧠 J.A.R.V.I.S Core</h2>
               <p class="subtitle">개인 AI 사고 구조와 판단 로직</p>
+
+              <!-- hover 시 표시되는 상세 설명 -->
               <div class="info">
                 <p>• 상황을 인식하는 개인 AI 설계</p>
                 <p>• 프롬프트 기반 추론 흐름 설계</p>
@@ -44,11 +54,15 @@
             </div>
           </div>
 
-          <!-- VOICE INTERACTION -->
+          <!-- =================
+               MODULE 02 : VOICE INTERACTION
+               - 실시간 음성 인터페이스
+          ================= -->
           <div class="profile">
             <div class="profile-inner">
               <h2>🔊 Voice Interaction</h2>
               <p class="subtitle">실시간 음성 기반 AI 에이전트</p>
+
               <div class="info">
                 <p>• 스트리밍 음성 인식(STT)</p>
                 <p>• LiveKit 기반 실시간 통신</p>
@@ -57,11 +71,15 @@
             </div>
           </div>
 
-          <!-- AUTOMOTIVE SECURITY -->
+          <!-- =================
+               MODULE 03 : AUTOMOTIVE SECURITY
+               - 차량 네트워크 + 보안 영역
+          ================= -->
           <div class="profile">
             <div class="profile-inner">
               <h2>🔐 Automotive Security</h2>
               <p class="subtitle">차량 네트워크 및 보안 분석</p>
+
               <div class="info">
                 <p>• CAN / ECU 통신 구조 이해</p>
                 <p>• 차량 네트워크 위협 모델링</p>
@@ -70,11 +88,15 @@
             </div>
           </div>
 
-          <!-- VEHICLE AI -->
+          <!-- =================
+               MODULE 04 : VEHICLE AI
+               - 차량 지능 시스템 연구
+          ================= -->
           <div class="profile">
             <div class="profile-inner">
               <h2>🚗 Vehicle AI</h2>
               <p class="subtitle">차량 지능 시스템 연구</p>
+
               <div class="info">
                 <p>• Python 기반 ECU 데이터 분석</p>
                 <p>• 임베디드·시스템 레벨 이해</p>
@@ -82,22 +104,25 @@
               </div>
             </div>
           </div>
-        </section>
-      
+        </div>
+      </section>
 
       <!-- =====================
-           ABOUT ME
+           ABOUT ME SECTION
+           - 기술 방향 + 사고 철학 설명
       ====================== -->
       <section class="main">
         <section class="project-detail">
           <h3 id="about">🧩 About Me</h3>
 
+          <!-- 개인 철학 설명 -->
           <p>
             이 페이지는 <b>임성준</b>이 구축 중인 개인 AI 시스템 <b>ABSOUL</b>의
             철학과 방향을 담고 있다. 단순한 기능 구현보다
             <b>왜 그렇게 사고해야 하는가</b>를 중요하게 생각한다.
           </p>
 
+          <!-- 개인 성향 / 기술 관심사 -->
           <ul class="project-list">
             <li>🧠 깊게 파는 걸 좋아함 (원리 집착형)</li>
             <li>🔧 구조를 이해해야 안심하는 성격</li>
@@ -106,6 +131,7 @@
             <li>⚙️ 혼자 실험하고 기록하는 스타일</li>
           </ul>
 
+          <!-- 개인 철학 문구 -->
           <p class="project-note">
             “Only those who are stronger than anyone else can bring justice into
             reality.”
@@ -118,6 +144,7 @@
 
     <!-- =====================
          FOOTER
+         - 시스템 상태 표시용
     ====================== -->
     <footer style="color: #6ee7ff; letter-spacing: 2px">
       SYSTEM STATUS : ONLINE ● © 2026 LIM SEONGJUN (ABSOUL)

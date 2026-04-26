@@ -1,4 +1,8 @@
-/* DEMO CENTER  */
+/* =====================
+   DEMO CENTER
+   - 헤더를 제외한 영역을
+     화면 정중앙에 배치
+===================== */
 .demo-center {
   height: calc(100vh - var(--header-h));
   display: flex;
@@ -9,6 +13,7 @@
 
 /* =====================
    DEMO SPLIT LAYOUT
+   - 좌: 영상 / 우: 터미널
 ===================== */
 .demo-split {
   display: grid;
@@ -21,59 +26,70 @@
 
   margin: 0 auto;
 
+  /* HUD가 공중에 떠 있는 느낌 */
   animation: hudFloat 6s ease-in-out infinite;
 }
 
 /* =====================
-   PANELS
+   PANEL COMMON STYLE
+   - 영상/터미널 공통 프레임
 ===================== */
 .demo-panel {
   height: 100%;
   border-radius: 16px;
   overflow: hidden;
+
+  /* 어두운 HUD 패널 */
   background: rgba(0, 0, 0, 0.45);
 }
 
 /* =====================
-   VIDEO
+   VIDEO PANEL
 ===================== */
 .demo-video video,
 .demo-video iframe {
   width: 100%;
   height: 100%;
   border: none;
-  object-fit: cover;
+  object-fit: cover; /* 화면 꽉 채우기 */
   background: black;
 }
 
 /* =====================
-   TERMINAL
+   TERMINAL PANEL
+   - AI 내부 상태 시각화
 ===================== */
 .terminal {
   padding: 1.4rem;
   overflow-y: auto;
+
+  /* 살아있는 패널 느낌 */
   animation: terminalGlow 3s ease-in-out infinite;
 }
 
+/* 한 줄 로그 공통 */
 .line {
   margin-bottom: 0.5rem;
   white-space: pre-wrap;
+
   opacity: 0;
   animation: logAppear 0.6s ease forwards;
 }
 
+/* 로그 타입별 색상 */
 .line.system {
-  color: #9ca3af;
+  color: #9ca3af; /* 회색 */
 }
 
 .line.user {
-  color: #6ee7ff;
+  color: #6ee7ff; /* 사용자 입력 */
 }
 
 .line.ai {
-  color: #a5f3fc;
+  color: #a5f3fc; /* AI 응답 */
 }
 
+/* 분석 중 상태: 깜빡이는 펄스 */
 .line.ai.analyzing {
   animation:
     logAppear 0.6s ease forwards,
@@ -81,19 +97,10 @@
 }
 
 /* =====================
-   FOOTER (OPTIONAL)
-===================== */
-.demo-footer {
-  margin-top: 1.2rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
-  text-align: right;
-  color: #67e8f9;
-}
-
-/* =====================
    ANIMATIONS
 ===================== */
+
+/* HUD 부유 효과 */
 @keyframes hudFloat {
   0% {
     transform: translateY(0);
@@ -106,6 +113,7 @@
   }
 }
 
+/* 로그 한 줄씩 등장 */
 @keyframes logAppear {
   from {
     opacity: 0;
@@ -117,6 +125,7 @@
   }
 }
 
+/* 분석 중 깜빡임 */
 @keyframes analyzingPulse {
   0%,
   100% {
@@ -127,6 +136,7 @@
   }
 }
 
+/* 터미널 네온 글로우 */
 @keyframes terminalGlow {
   0%,
   100% {
@@ -138,14 +148,16 @@
 }
 
 /* =====================
-   DEMO RESPONSIVE (MOBILE)
+   RESPONSIVE (MOBILE)
 ===================== */
 @media (max-width: 768px) {
+  /* 중앙 고정 해제 */
   .demo-center {
     height: auto;
     padding: 1rem 0;
   }
 
+  /* 세로 스택 */
   .demo-split {
     grid-template-columns: 1fr;
     height: auto;
@@ -162,6 +174,7 @@
     font-size: 0.85rem;
   }
 
+  /* 모바일 영상 비율 유지 */
   .demo-video iframe {
     aspect-ratio: 16 / 9;
   }

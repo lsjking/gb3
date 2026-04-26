@@ -12,23 +12,24 @@
   align-items: center;
 }
 
-/* =====================
-   STATE SYSTEM
-===================== */
+/* ================================
+   STATE SYSTEM (CSS ONLY)
+   - input:checked 기반 상태 머신
+================================ */
 input[type='radio'] {
   display: none;
 }
 
 :root {
+  /* 코어 및 광원 기본 색 */
   --core-color: #5b6cff;
   --glow-color: color-mix(in srgb, var(--core-color) 60%, transparent);
 
+  /* 애니메이션 및 UI 반응 속도 */
   --ring-speed: 6s;
-  --core-scale: 1;
-  --core-opacity: 1;
-  --bg-tint: none;
   --orbit-radius: 245px;
 
+  /* 메뉴 hover 효과 */
   --ball-hover-bg: rgba(116, 118, 212, 0.15);
   --ball-hover-glow: rgba(116, 118, 212, 0.45);
 }
